@@ -1,0 +1,4 @@
+FROM haproxy
+
+COPY proxy.conf proxy.conf
+ENTRYPOINT ["haproxy", "-f", "proxy.conf"]
