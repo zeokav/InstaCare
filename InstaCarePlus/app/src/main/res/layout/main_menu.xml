@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textViewHM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="207dp"
+        android:fontFamily="@font/quicksand"
+        android:text="@string/health_monitor"
+        android:textColor="@color/black"
+        android:textFontWeight="700"
+        android:textSize="12pt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="43dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="372dp"
+        android:background="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/actionModeCloseDrawable" />
+
+    <View
+        android:id="@+id/h_line"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_margin="5pt"
+        android:layout_marginTop="35dp"
+        android:background="@color/ic_theme"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHM"
+        tools:layout_editor_absoluteX="64dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="360dp"
+        android:textFontWeight="600"
+        android:fontFamily="@font/asap"
+        android:text="@string/spo2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/h_line" />
+
+    <View
+        android:id="@+id/h_line1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="2pt"
+        android:layout_marginRight="8pt"
+        android:layout_marginLeft="6pt"
+        android:background="@color/ic_theme"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graph"
+        android:layout_width="match_parent"
+        android:layout_height="150dip"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="16dp"
+        app:layout_goneMarginTop="2pt"
+        app:layout_constraintTop_toBottomOf="@+id/h_line1"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="360dp"
+        android:fontFamily="@font/asap"
+        android:text="@string/bp"
+        android:textFontWeight="600"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.032"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/graph" />
+
+    <View
+        android:id="@+id/h_line2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="2pt"
+        android:layout_marginRight="8pt"
+        android:layout_marginLeft="6pt"
+        android:background="@color/ic_theme"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graph1"
+        android:layout_width="match_parent"
+        android:layout_height="150dip"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/h_line2"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="360dp"
+        android:fontFamily="@font/asap"
+        android:text="@string/ecg"
+        android:textFontWeight="600"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.032"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/graph1" />
+
+    <View
+        android:id="@+id/h_line3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="2pt"
+        android:layout_marginRight="8pt"
+        android:layout_marginLeft="6pt"
+        android:background="@color/ic_theme"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graph2"
+        android:layout_width="match_parent"
+        android:layout_height="150dip"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/h_line3"
+        tools:layout_editor_absoluteX="0dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
