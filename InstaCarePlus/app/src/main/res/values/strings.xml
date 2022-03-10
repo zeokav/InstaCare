@@ -9,4 +9,12 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="app_title">InstaCare+</string>
+    <string name="action_register">Register</string>
+    <string name="health_monitor">Health Monitor</string>
+    <string name="spo2">SpO2</string>
+    <string name="bp">Blood Pressure</string>
+    <string name="ecg">ECG</string>
+    <string name="doc">Doctor</string>
+    <string name="patient">Patient</string>
 </resources>
