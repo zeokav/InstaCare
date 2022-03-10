@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  user-1:
+    image: user-service:latest
+    container_name: user-1
+    expose:
+      - 8080
+  user-2:
+    image: user-service:latest
+    container_name: user-2
+    expose:
+      - 8080
+  communication-1:
+    image: communication-service:latest
+    container_name: communication-1
+    expose:
+      - 8080
+  communication-2:
+    image: communication-service:latest
+    container_name: communication-2
+    expose:
+      - 8080
+  haproxy:
+    image: balancer:latest
+    container_name: haproxy-lb
+    depends_on:
+      - communication-1
+      - communication-2
+      - user-1
+      - user-2
+    ports:
+      - "80:80"
