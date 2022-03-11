@@ -17,4 +17,19 @@
     <string name="ecg">ECG</string>
     <string name="doc">Doctor</string>
     <string name="patient">Patient</string>
+    <string name="med_supply">Add Medical Supplies</string>
+    <string name="item">Item</string>
+    <string name="qty">Quantity</string>
+    <string name="price">Price</string>
+    <string name="desc">Description</string>
+    <string name="add_item">Add Item</string>
+    <string name="home">Home</string>
+    <string name="consult_menu">Consultation</string>
+    <string name="supply_menu">Medical Supplies</string>
+    <string name="schedule">Med Schedule</string>
+    <string name="medicine_schedule">Medicine Schedule</string>
+    <string name="back_btn">Back Button</string>
+    <string name="add_btn">Back Button</string>
+
+
 </resources>
