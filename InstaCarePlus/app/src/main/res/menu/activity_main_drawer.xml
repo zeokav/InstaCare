@@ -9,12 +9,20 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:id="@+id/nav_healthmonitor"
+            android:icon="@drawable/monitor"
+            android:title="@string/health_monitor" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/nav_consultation"
+            android:icon="@drawable/medi"
+            android:title="@string/consult_menu" />
+        <item
+            android:id="@+id/nav_supply"
+            android:icon="@drawable/supplies"
+            android:title="@string/supply_menu" />
+        <item
+            android:id="@+id/nav_medsched"
+            android:icon="@drawable/pill_icon"
+            android:title="@string/schedule" />
     </group>
 </menu>

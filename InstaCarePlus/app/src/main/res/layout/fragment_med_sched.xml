@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MedSched">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="207dp"
+            android:fontFamily="@font/quicksand"
+            android:text="@string/medicine_schedule"
+            android:textColor="@color/black"
+            android:textFontWeight="700"
+            android:textSize="12pt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/h_line"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_margin="5pt"
+            android:layout_marginTop="35dp"
+            android:background="@color/ic_theme"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            tools:layout_editor_absoluteX="64dp" />
+
+        <LinearLayout
+            android:id="@+id/llayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/h_line"
+            android:layout_margin="5pt">
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_margin="4dp"
+                app:cardBackgroundColor="@color/blue_pill"
+                app:cardCornerRadius="30dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="100dp"
+                    android:background="@color/white"/>
+
+                <ImageView
+                    android:id="@+id/alarm_icon"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/alarm_icon"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginLeft="20dp"/>
+
+                <ImageView
+                    android:id="@+id/edit_icon"
+                    android:layout_width="25dp"
+                    android:layout_height="24dp"
+                    app:srcCompat="@drawable/edit_icon"
+                    android:layout_marginTop="110dp"
+                    android:layout_marginLeft="330dp"/>
+
+                <TextView
+                    android:id="@+id/alarm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="110dp"
+                    android:layout_marginLeft="60dp"
+                    android:text="TextView"
+                    android:textSize="16dp"
+                    android:textColor="@color/white"/>
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:srcCompat="@drawable/pill_icon"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="15dp"
+                    />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginLeft="90dp"
+                    android:ems="10"
+                    android:textSize="20dp"
+                    android:background="@null"
+                    android:inputType="textPersonName"
+                    android:text="Medicine"
+                    android:textColor="@color/white"/>
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginLeft="90dp"
+                    android:ems="10"
+                    android:textSize="16dp"
+                    android:background="@null"
+                    android:inputType="textPersonName"
+                    android:text="instructions"
+                    android:textColor="@color/white"/>
+
+
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginBottom="16dp"
+        app:srcCompat="@android:drawable/ic_dialog_email"/>
+
+</FrameLayout>

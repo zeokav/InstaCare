@@ -1,4 +1,4 @@
-package edu.gatech.instacareplus.ui.login.ui.home
+package edu.gatech.instacareplus.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
