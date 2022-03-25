@@ -6,7 +6,7 @@ if "%1"=="user" set IMG=user-service
 
 echo "Building jar"
 cd "..\%DIR%"
-@Call .\gradlew.bat clean build
+@Call .\gradlew.bat clean build -xtest
 
 echo "Updating image"
 cd ..\Deployment

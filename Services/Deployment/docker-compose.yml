@@ -3,21 +3,29 @@ services:
   user-1:
     image: user-service:latest
     container_name: user-1
+    depends_on:
+      - postgresdb
     expose:
       - 8080
   user-2:
     image: user-service:latest
     container_name: user-2
+    depends_on:
+      - postgresdb
     expose:
       - 8080
   communication-1:
     image: communication-service:latest
     container_name: communication-1
+    depends_on:
+      - postgresdb
     expose:
       - 8080
   communication-2:
     image: communication-service:latest
     container_name: communication-2
+    depends_on:
+      - postgresdb
     expose:
       - 8080
   haproxy:
@@ -30,3 +38,17 @@ services:
       - user-2
     ports:
       - "80:80"
+  postgresdb:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: enterprise
+      POSTGRES_USER: enterprise
+      POSTGRES_DB: instacare
+    volumes:
+      - ../Database:/var/lib/postgresql
+      - ../Database/schema.sql:/docker-entrypoint-initdb.d/create_tables.sql
+    expose:
+      - 5432
+    ports:
+      - "5432:5432"
+
