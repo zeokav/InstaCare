@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InstaCarePlus">
         <activity
+            android:name=".PatientRegister"
+            android:exported="false" />
+        <activity
+            android:name=".DoctorRegister"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main"

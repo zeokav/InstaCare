@@ -13,10 +13,8 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
-import edu.gatech.instacareplus.MainActivity
+import edu.gatech.instacareplus.*
 import edu.gatech.instacareplus.databinding.ActivityLoginBinding
-
-import edu.gatech.instacareplus.R
 
 class LoginActivity : AppCompatActivity() {
 
@@ -119,6 +117,24 @@ class LoginActivity : AppCompatActivity() {
 
     private fun showLoginFailed(@StringRes errorString: Int) {
         Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
+    }
+
+    fun registerPatient(view: View){
+        val EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE"
+        val message = "Register"
+        val intent = Intent(this, PatientRegister::class.java).apply {
+            putExtra(EXTRA_MESSAGE, message)
+        }
+        startActivity(intent)
+    }
+
+    fun registerDoctor(view: View){
+        val EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE"
+        val message = "Register"
+        val intent = Intent(this, DoctorRegister::class.java).apply {
+            putExtra(EXTRA_MESSAGE, message)
+        }
+        startActivity(intent)
     }
 }
 
