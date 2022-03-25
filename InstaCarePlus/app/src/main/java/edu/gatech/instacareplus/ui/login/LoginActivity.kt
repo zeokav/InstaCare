@@ -1,6 +1,7 @@
 package edu.gatech.instacareplus.ui.login
 
 import android.app.Activity
+import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -12,6 +13,7 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
+import edu.gatech.instacareplus.MainActivity
 import edu.gatech.instacareplus.databinding.ActivityLoginBinding
 
 import edu.gatech.instacareplus.R
@@ -107,6 +109,12 @@ class LoginActivity : AppCompatActivity() {
                 "$welcome $displayName",
                 Toast.LENGTH_LONG
         ).show()
+        val EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE"
+        val message = model.displayName
+        val intent = Intent(this, MainActivity::class.java).apply {
+            putExtra(EXTRA_MESSAGE, message)
+        }
+        startActivity(intent)
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
