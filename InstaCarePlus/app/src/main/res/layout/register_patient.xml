@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textViewHM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="207dp"
+        android:fontFamily="@font/quicksand"
+        android:text="@string/reg_pat"
+        android:textColor="@color/black"
+        android:textFontWeight="700"
+        android:textSize="12pt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="43dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="372dp"
+        android:background="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/actionModeCloseDrawable" />
+
+    <View
+        android:id="@+id/h_line"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_margin="5pt"
+        android:layout_marginTop="35dp"
+        android:background="@color/ic_theme"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHM"
+        tools:layout_editor_absoluteX="64dp" />
+
+    <TextView
+        android:id="@+id/itemText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="360dp"
+        android:fontFamily="@font/asap"
+        android:paddingLeft="5dp"
+        android:text="@string/fname"
+        android:textColor="@color/ic_theme"
+        android:textFontWeight="600"
+        android:textSize="8pt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/h_line" />
+
+    <EditText
+        android:id="@+id/item"
+        android:layout_width="150pt"
+        android:layout_height="wrap_content"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:inputType="text"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/itemText"
+        app:layout_constraintTop_toBottomOf="@+id/itemText" />
+
+    <TextView
+        android:id="@+id/qtyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="360dp"
+        android:fontFamily="@font/asap"
+        android:paddingLeft="5dp"
+        android:text="@string/prompt_email"
+        android:textColor="@color/ic_theme"
+        android:textFontWeight="600"
+        android:textSize="8pt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item" />
+
+    <EditText
+        android:id="@+id/qty"
+        android:layout_width="150pt"
+        android:layout_height="wrap_content"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:inputType="textEmailAddress"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/qtyText"
+        app:layout_constraintTop_toBottomOf="@+id/qtyText" />
+
+    <TextView
+        android:id="@+id/priceText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="360dp"
+        android:fontFamily="@font/asap"
+        android:paddingLeft="5dp"
+        android:text="@string/prompt_password"
+        android:textColor="@color/ic_theme"
+        android:textFontWeight="600"
+        android:textSize="8pt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/qty" />
+
+    <EditText
+        android:id="@+id/price"
+        android:layout_width="150pt"
+        android:layout_height="wrap_content"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:inputType="text"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/priceText"
+        app:layout_constraintTop_toBottomOf="@+id/priceText" />
+
+    <TextView
+        android:id="@+id/descText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="360dp"
+        android:fontFamily="@font/asap"
+        android:paddingLeft="5dp"
+        android:text="@string/dob"
+        android:textColor="@color/ic_theme"
+        android:textFontWeight="600"
+        android:textSize="8pt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/price" />
+
+    <EditText
+        android:id="@+id/dob"
+        android:layout_width="150pt"
+        android:layout_height="wrap_content"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/descText"
+        app:layout_constraintTop_toBottomOf="@+id/descText" />
+
+    <Button
+        android:id="@+id/register"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/round_button"
+        android:fontFamily="@font/asap"
+        android:text="@string/action_register"
+        android:textColor="@color/white"
+        android:textFontWeight="600"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dob"
+        app:layout_constraintVertical_bias="0.3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
