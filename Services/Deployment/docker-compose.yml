@@ -49,4 +49,6 @@ services:
       - ../Database/schema.sql:/docker-entrypoint-initdb.d/create_tables.sql
     expose:
       - 5432
+    ports:
+      - "5432:5432"
 

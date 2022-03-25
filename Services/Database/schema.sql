@@ -22,6 +22,7 @@ CREATE INDEX IF NOT EXISTS specialty ON doctors (specialty);
 
 CREATE TABLE IF NOT EXISTS "consultation_queue"
 (
+    consultation_id serial PRIMARY KEY,
     patient_uid integer references patients(uid) NOT NULL,
     assigned_doctor_uid integer references doctors(uid),
     is_assigned integer NOT NULL,
@@ -33,6 +34,7 @@ CREATE INDEX IF NOT EXISTS queue_idx ON consultation_queue (added_on, is_assigne
 
 CREATE TABLE IF NOT EXISTS "resources"
 (
+    resource_id serial PRIMARY KEY,
     owner_uid integer references patients(uid),
     resource_name varchar (50) NOT NULL,
     resource_qty integer NOT NULL,
@@ -48,11 +50,13 @@ CREATE TABLE IF NOT EXISTS "prescriptions"
     prescription_id serial PRIMARY KEY,
     issuer_doctor_uid integer references doctors(uid),
     patient_uid integer references patients(uid),
-    issue_date date NOT NULL
+    issue_date date NOT NULL,
+    notes varchar (500)
 );
 
 CREATE TABLE IF NOT EXISTS "medicines"
 (
+    med_id serial PRIMARY KEY,
     prescription_id integer references prescriptions(prescription_id),
     medicine_name varchar (100) NOT NULL,
     num_days integer NOT NULL,
