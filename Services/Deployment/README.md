@@ -2,10 +2,10 @@
 (Set variable JAVA_HOME to a Java17 distro before this)
 ```shell
 # UserService image
-build.bat user
+.\build.bat user
 
 # CommunicationService image
-build.bat comm
+.\build.bat comm
 ```
 
 ### Building HAproxy image after updating configs
