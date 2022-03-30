@@ -1,5 +1,6 @@
 FROM openjdk:17-alpine3.14
 
 ARG JAR_FILE=build/libs/*.jar
+ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 COPY ${JAR_FILE} app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
