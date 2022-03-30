@@ -4,7 +4,10 @@ import edu.gatech.userservice.persistence.Resource;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface ResourceRepository extends JpaRepository<Resource, Integer> {
+import java.util.List;
 
+@Repository
+public interface ResourceRepository extends JpaRepository<Resource, Long> {
+
+    List<Resource> findResourceByAvailableAndResourceNameContaining(Integer available, String resourceName);
 }
