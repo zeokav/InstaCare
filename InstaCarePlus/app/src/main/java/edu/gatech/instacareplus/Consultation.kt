@@ -1,10 +1,15 @@
 package edu.gatech.instacareplus
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import edu.gatech.instacareplus.data.ConsultAdapter
+import edu.gatech.instacareplus.data.consultDoc
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,7 +25,7 @@ class Consultation : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
+    private var recyclerView: RecyclerView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -34,7 +39,22 @@ class Consultation : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_consultation, container, false)
+        val view = inflater.inflate(R.layout.fragment_consultation, container, false)
+        val dataList = ArrayList<consultDoc>()
+        dataList.add(consultDoc("Niraj","General Physician","Available"))
+        dataList.add(consultDoc("Saket","General Physician","Available"))
+        dataList.add(consultDoc("Diptark","General Physician","Available"))
+        dataList.add(consultDoc("Sagar","General Physician","Available"))
+        dataList.add(consultDoc("Sagar","General Physician","Available"))
+        dataList.add(consultDoc("Sagar","General Physician","Available"))
+        recyclerView = view.findViewById(R.id.recycler_view)
+        recyclerView?.apply {
+            layoutManager = LinearLayoutManager(activity)
+            val cAdapter = ConsultAdapter(dataList)
+            adapter = cAdapter
+
+        }
+        return view
     }
 
     companion object {
