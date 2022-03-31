@@ -61,8 +61,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-        <com.jjoe64.graphview.GraphView
-            android:id="@+id/graph"
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/graph1"
+            android:padding="9dp"
             android:layout_width="match_parent"
             android:layout_height="150dip"
             android:layout_marginTop="8dp"
@@ -85,7 +86,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.032"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/graph" />
+            app:layout_constraintTop_toBottomOf="@+id/graph1" />
 
         <View
             android:id="@+id/h_line2"
@@ -98,8 +99,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
-        <com.jjoe64.graphview.GraphView
-            android:id="@+id/graph1"
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/graph2"
             android:layout_width="match_parent"
             android:layout_height="150dip"
             android:layout_marginTop="8dp"
@@ -121,7 +122,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.032"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/graph1" />
+            app:layout_constraintTop_toBottomOf="@+id/graph2" />
 
         <View
             android:id="@+id/h_line3"
@@ -133,8 +134,8 @@
             android:background="@color/ic_theme"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
-        <com.jjoe64.graphview.GraphView
-            android:id="@+id/graph2"
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/graph3"
             android:layout_width="match_parent"
             android:layout_height="150dip"
             android:layout_marginTop="8dp"
