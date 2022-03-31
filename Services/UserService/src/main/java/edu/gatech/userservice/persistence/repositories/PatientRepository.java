@@ -10,4 +10,6 @@ import java.util.List;
 public interface PatientRepository extends JpaRepository<Patient, Integer> {
 
     List<Patient> findPatientByEmail(String email);
+
+    Patient findPatientById(Integer patientId);
 }

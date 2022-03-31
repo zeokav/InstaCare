@@ -38,12 +38,13 @@ CREATE TABLE IF NOT EXISTS "resources"
     owner_uid integer references patients(uid),
     resource_name varchar (50) NOT NULL,
     resource_qty integer NOT NULL,
-    location_x float NOT NULL,
-    location_y float NOT NULL,
-    price integer NOT NULL,
-    notes varchar (200)
+    latitude float NOT NULL,
+    longitude float NOT NULL,
+    price float NOT NULL,
+    notes varchar (200),
+    available integer NOT NULL
 );
-CREATE INDEX IF NOT EXISTS name ON resources (resource_name);
+CREATE INDEX IF NOT EXISTS name ON resources (resource_name, available);
 
 CREATE TABLE IF NOT EXISTS "prescriptions"
 (
