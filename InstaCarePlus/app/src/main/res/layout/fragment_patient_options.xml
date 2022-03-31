@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:id="@+id/frame_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PatientOptions"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewHM"
+                    android:layout_width="346dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="207dp"
+                    android:fontFamily="@font/quicksand"
+                    android:text="Patient Information"
+                    android:textColor="@color/black"
+                    android:textFontWeight="700"
+                    android:textSize="12pt"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/h_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_margin="5pt"
+                    android:layout_marginTop="35dp"
+                    android:background="@color/ic_theme"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewHM"
+                    tools:layout_editor_absoluteX="64dp" />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="15dp"
+                    tools:srcCompat="@tools:sample/avatars" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@color/ic_theme"
+                    android:textColor="@color/white"
+                    android:text="Niraj Srimal"
+                    android:gravity="center"
+                    android:textSize="28dp">
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@color/ic_theme"
+                    android:textColor="@color/white"
+                    android:text="DOB - 07-08-1996"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:layout_marginBottom="50dp">
+                </TextView>
+
+                <Button
+                    android:id="@+id/chatButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/asap"
+                    android:text="CHAT"
+                    android:textSize="16dp"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:gravity="center"
+                    />
+                <Button
+                    android:id="@+id/vitalsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/asap"
+                    android:text="Check Vitals"
+                    android:textSize="16dp"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:gravity="center"
+                    />
+
+                <Button
+                    android:id="@+id/rxButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/asap"
+                    android:text="ADD PRESCRIPTION"
+                    android:textSize="16dp"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:gravity="center"
+                    />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+</FrameLayout>
