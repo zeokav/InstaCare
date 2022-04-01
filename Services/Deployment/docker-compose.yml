@@ -45,10 +45,27 @@ services:
       POSTGRES_USER: enterprise
       POSTGRES_DB: instacare
     volumes:
-      - ../Database:/var/lib/postgresql
-      - ../Database/schema.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - ../Database/postgres:/var/lib/postgresql
+      - ../Database/postgres/schema.sql:/docker-entrypoint-initdb.d/create_tables.sql
     expose:
       - 5432
     ports:
       - "5432:5432"
+  influxdb:
+    image: influxdb
+    environment:
+      DOCKER_INFLUXDB_INIT_USERNAME: enterprise
+      DOCKER_INFLUXDB_INIT_PASSWORD: enterprise
+      DOCKER_INFLUXDB_INIT_ORG: enterprise
+      DOCKER_INFLUXDB_INIT_BUCKET: vitals
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: enterprise
+      DOCKER_INFLUXDB_INIT_MODE: setup
+    expose:
+      - 8086
+    ports:
+      - "8086:8086"
+    volumes:
+      - ../Database/influx/data:/var/lib/influxdb2
+      - ../Database/influx/schema.iql:/docker-entrypoint-initdb.d/init.iql
+
 
