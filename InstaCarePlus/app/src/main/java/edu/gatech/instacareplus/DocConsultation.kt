@@ -21,7 +21,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [Consultation.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Consultation : Fragment() {
+class DocConsultation : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -46,18 +46,17 @@ class Consultation : Fragment() {
 
     override fun onStart() {
         super.onStart()
-
-        val dataList = ArrayList<docRecord>()
-        dataList.add(docRecord("Niraj", "01/01/2021", "General", "abcdefgh"))
-        dataList.add(docRecord("Saket", "01/01/2021", "General", "abcdefghi"))
-        dataList.add(docRecord("Diptark", "01/01/2021", "General", "abcdefghj"))
-        dataList.add(docRecord("Sagar", "01/01/2021", "General", "abcdefghk"))
-        dataList.add(docRecord("Sagar", "01/01/2021", "General", "abcdefghl"))
-        dataList.add(docRecord("Sagar", "01/01/2021", "General", "abcdefghm"))
+        val dataList = ArrayList<patient>()
+        dataList.add(patient("Niraj", "12345", "10 mins"))
+        dataList.add(patient("Saket", "12345", "15 mins"))
+        dataList.add(patient("Diptark", "12345", "15 mins"))
+        dataList.add(patient("Sagar", "12345", "17 mins"))
+        dataList.add(patient("Sagar", "12345", "19 mins"))
+        dataList.add(patient("Sagar", "12345", "25 mins"))
         recyclerView = view?.findViewById(R.id.recycler_view)
         recyclerView?.apply {
             layoutManager = LinearLayoutManager(activity)
-            val cAdapter = PastRecordsAdapter(dataList)
+            val cAdapter = ConsultAdapter(dataList)
             adapter = cAdapter
         }
 

@@ -20,7 +20,7 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var binding: ActivityLoginBinding
-
+    public var isDoctor:Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -109,10 +109,19 @@ class LoginActivity : AppCompatActivity() {
         ).show()
         val EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE"
         val message = model.displayName
-        val intent = Intent(this, MainActivity::class.java).apply {
-            putExtra(EXTRA_MESSAGE, message)
+
+        if(isDoctor == true) {
+            intent = Intent(this, DoctorActivity::class.java).apply {
+                putExtra(EXTRA_MESSAGE, message)
+            }
+            startActivity(intent)
         }
-        startActivity(intent)
+        else {
+            intent = Intent(this, MainActivity::class.java).apply {
+                putExtra(EXTRA_MESSAGE, message)
+            }
+            startActivity(intent)
+        }
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {

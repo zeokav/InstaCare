@@ -54,11 +54,7 @@ private lateinit var binding: ActivityMainBinding
 
 
         Thread(Runnable {
-            // performing some dummy time taking operation
             try {
-                val lineChart1 = findViewById<LineChart>(R.id.graph1)
-                val lineChart2 = findViewById<LineChart>(R.id.graph2)
-                val lineChart3 = findViewById<LineChart>(R.id.graph3)
                 val entries1: ArrayList<Entry> = ArrayList()
                 val entries2: ArrayList<Entry> = ArrayList()
                 val entries3: ArrayList<Entry> = ArrayList()
