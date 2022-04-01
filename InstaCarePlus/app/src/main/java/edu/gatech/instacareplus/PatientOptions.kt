@@ -1,14 +1,14 @@
 package edu.gatech.instacareplus
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.commit
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -51,19 +51,33 @@ class PatientOptions : Fragment() {
             val fragment: Fragment = PatientVitals()
             val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace( android.R.id.content, fragment)
+            fragmentTransaction.replace( R.id.fragmentContainerView, fragment)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
-            /*
-            activity?.supportFragmentManager.commit {
-                replace<PatientVitals>(((ViewGroup).getView().getParent()).getId())
-                setReorderingAllowed(true)
-                addToBackStack("name") // name can be null
-            }
-             */
-// set on-click listener
         }
+
+        rxButton.setOnClickListener {
+            val fragment: Fragment = PrescriptionAdd()
+            val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace( R.id.fragmentContainerView, fragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
+
+        view.setFocusableInTouchMode(true)
+        view.requestFocus()
+        view.setOnKeyListener(object : View.OnKeyListener {
+            override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    requireActivity().supportFragmentManager.popBackStackImmediate();
+                    return true
+                }
+                return false
+            }
+        })
     }
+
     companion object {
         /**
          * Use this factory method to create a new instance of

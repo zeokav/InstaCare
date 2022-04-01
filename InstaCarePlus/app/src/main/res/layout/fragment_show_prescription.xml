@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PrescriptionAdd">
+    tools:context=".ShowPrescription">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -124,12 +124,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/qty" />
 
-        <EditText
+        <TextView
             android:id="@+id/dnote"
             android:layout_width="150pt"
             android:layout_height="wrap_content"
             android:imeActionLabel="@string/action_sign_in_short"
-            android:inputType="text"
+            android:inputType="textMultiLine"
             android:selectAllOnFocus="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -145,7 +145,7 @@
             android:layout_marginEnd="360dp"
             android:fontFamily="@font/asap"
             android:paddingLeft="5dp"
-            android:text="@string/medicine"
+            android:text="Prescribed Medicine"
             android:textColor="@color/ic_theme"
             android:textFontWeight="600"
             android:textSize="8pt"
@@ -168,31 +168,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <TableRow>
-                    <EditText
-                        android:hint="@string/medicine"
+                    <TextView
+                        android:hint="Medicine"
                         android:layout_width="60pt"
                         android:layout_height="wrap_content"
-                        android:imeActionLabel="@string/action_sign_in_short"
-                        android:inputType="text"
                         android:selectAllOnFocus="true"
-                        android:textSize="12dp"/>
-                    <EditText
+                        android:textSize="16dp"/>
+                    <TextView
                         android:hint="@string/details"
                         android:layout_width="60pt"
                         android:layout_height="wrap_content"
-                        android:imeActionLabel="@string/action_sign_in_short"
-                        android:inputType="text"
                         android:selectAllOnFocus="true"
-                        android:textSize="12dp"/>
-                    <Button
-                        android:background="@drawable/round_button"
-                        android:fontFamily="@font/asap"
-                        android:layout_width="50dp"
-                        android:layout_height="30dp"
-                        android:textSize="12dp"
-                        android:layout_marginLeft="10dp"
-                        android:text="@string/add"
-                        android:textColor="@color/white"/>
+                        android:textSize="16dp"/>
                 </TableRow>
             </TableLayout>
 
@@ -200,13 +187,13 @@
         </ScrollView>
 
         <Button
-            android:id="@+id/register"
+            android:id="@+id/done"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/round_button"
             android:fontFamily="@font/asap"
-            android:text="Add Prescription"
+            android:text="Done"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

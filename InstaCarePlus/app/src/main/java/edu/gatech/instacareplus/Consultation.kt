@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import edu.gatech.instacareplus.data.ConsultAdapter
-import edu.gatech.instacareplus.data.consultDoc
+import edu.gatech.instacareplus.data.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -26,6 +26,7 @@ class Consultation : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var recyclerView: RecyclerView? = null
+    private var isDoctor: Boolean? = true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -40,23 +41,46 @@ class Consultation : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_consultation, container, false)
-        val dataList = ArrayList<consultDoc>()
-        dataList.add(consultDoc("Niraj","General Physician","Available"))
-        dataList.add(consultDoc("Saket","General Physician","Available"))
-        dataList.add(consultDoc("Diptark","General Physician","Available"))
-        dataList.add(consultDoc("Sagar","General Physician","Available"))
-        dataList.add(consultDoc("Sagar","General Physician","Available"))
-        dataList.add(consultDoc("Sagar","General Physician","Available"))
-        recyclerView = view.findViewById(R.id.recycler_view)
-        recyclerView?.apply {
-            layoutManager = LinearLayoutManager(activity)
-            val cAdapter = ConsultAdapter(dataList)
-            adapter = cAdapter
-
-        }
         return view
     }
 
+    override fun onStart() {
+        super.onStart()
+        if(isDoctor == true) {
+            val dataList = ArrayList<patient>()
+            dataList.add(patient("Niraj", "12345", "10 mins"))
+            dataList.add(patient("Saket", "12345", "15 mins"))
+            dataList.add(patient("Diptark", "12345", "15 mins"))
+            dataList.add(patient("Sagar", "12345", "17 mins"))
+            dataList.add(patient("Sagar", "12345", "19 mins"))
+            dataList.add(patient("Sagar", "12345", "25 mins"))
+            recyclerView = view?.findViewById(R.id.recycler_view)
+            recyclerView?.apply {
+                layoutManager = LinearLayoutManager(activity)
+                val cAdapter = ConsultAdapter(dataList)
+                adapter = cAdapter
+            }
+        }
+        else {
+            val dataList = ArrayList<docRecord>()
+            dataList.add(docRecord("Niraj", "01/01/2021", "General", "abcdefgh"))
+            dataList.add(docRecord("Saket", "01/01/2021", "General", "abcdefghi"))
+            dataList.add(docRecord("Diptark", "01/01/2021", "General","abcdefghj"))
+            dataList.add(docRecord("Sagar", "01/01/2021", "General", "abcdefghk"))
+            dataList.add(docRecord("Sagar", "01/01/2021", "General", "abcdefghl"))
+            dataList.add(docRecord("Sagar", "01/01/2021", "General", "abcdefghm"))
+            recyclerView = view?.findViewById(R.id.recycler_view)
+            recyclerView?.apply {
+                layoutManager = LinearLayoutManager(activity)
+                val cAdapter = PastRecordsAdapter(dataList)
+                adapter = cAdapter
+            }
+        }
+    }
+    override fun onResume() {
+        super.onResume()
+        Toast.makeText(context, "Container Consultation", Toast.LENGTH_LONG)
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of

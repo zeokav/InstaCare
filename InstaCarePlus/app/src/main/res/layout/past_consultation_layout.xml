@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView android:layout_width="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_height="140dp"
+    android:layout_margin="4dp"
+    card_view:cardBackgroundColor="@color/ic_theme"
+    card_view:cardElevation="4dp"
+    card_view:cardCornerRadius="30dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="100dp"
+        android:background="@color/white"/>
+
+    <ImageButton
+        android:id="@+id/prescButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="310dp"
+        android:layout_marginTop="105dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        card_view:srcCompat="@drawable/medi" />
+
+    <TextView
+        android:id="@+id/consultDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:layout_marginStart="30dp"
+        android:text="07/01/2022"
+        android:textSize="16dp"
+        android:textColor="@color/white"/>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+         card_view:srcCompat="@drawable/doctor_icon" />
+
+    <TextView
+        android:id="@+id/docName"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="90dp"
+        android:ems="10"
+        android:textSize="20sp"
+        android:background="@null"
+        android:inputType="textPersonName"
+        android:text="Dr. X"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/docType"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="90dp"
+        android:ems="10"
+        android:textSize="16dp"
+        android:background="@null"
+        android:inputType="textPersonName"
+        android:text="Speciality"
+        android:textColor="@color/white"/>
+    <TextView
+        android:id="@+id/consultID"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginLeft="90dp"
+        android:ems="10"
+        android:textSize="12dp"
+        android:background="@null"
+        android:inputType="textPersonName"
+        android:text="Speciality"
+        android:textColor="@color/white"/>
+
+
+</com.google.android.material.card.MaterialCardView>
