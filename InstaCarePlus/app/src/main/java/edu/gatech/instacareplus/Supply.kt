@@ -1,10 +1,17 @@
 package edu.gatech.instacareplus
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +41,62 @@ class Supply : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_supply, container, false)
+        val view = inflater.inflate(R.layout.fragment_supply, container, false)
+
+        val mAddFab = view.findViewById<ExtendedFloatingActionButton>(R.id.add_fab);
+        // FAB button
+        val mAddResource = view.findViewById<FloatingActionButton>(R.id.add_resources);
+        val mAddPersonFab =  view.findViewById<FloatingActionButton>(R.id.add_person_fab);
+
+        val addAlarmActionText = view.findViewById<TextView>(R.id.add_alarm_action_text);
+        val addPersonActionText = view.findViewById<TextView>(R.id.add_person_action_text);
+
+        mAddResource.visibility = View.GONE
+        mAddPersonFab.visibility = View.GONE
+        addAlarmActionText.visibility = View.GONE
+        addPersonActionText.visibility = View.GONE
+
+        var isAllFabsVisible = false;
+
+        mAddFab.shrink();
+
+        mAddFab.setOnClickListener {
+            if (!isAllFabsVisible) {
+
+                mAddResource.show()
+                mAddPersonFab.show()
+                addAlarmActionText.visibility = View.VISIBLE
+                addPersonActionText.visibility = View.VISIBLE
+
+                mAddFab.extend()
+
+                isAllFabsVisible = true
+            }
+            else {
+
+                mAddResource.hide()
+                mAddPersonFab.hide()
+                addAlarmActionText.visibility = View.GONE
+                addPersonActionText.visibility = View.GONE
+
+                mAddFab.shrink()
+                isAllFabsVisible = false
+            }
+        }
+        mAddPersonFab.setOnClickListener {
+            Toast.makeText(context,"Person Added",Toast.LENGTH_SHORT).show()
+        }
+        mAddResource.setOnClickListener {
+            val fragment: Fragment = AddSupply()
+            val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace( R.id.fragmentContainerView, fragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+            Toast.makeText(context, "Alarm Added", Toast.LENGTH_SHORT).show()
+        }
+
+        return view
     }
 
     companion object {

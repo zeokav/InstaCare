@@ -1,15 +1,12 @@
 package edu.gatech.instacareplus
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import edu.gatech.instacareplus.data.*
-
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,14 +15,13 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [Consultation.newInstance] factory method to
+ * Use the [containerSupply.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Consultation : Fragment() {
+class containerSupply : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var recyclerView: RecyclerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,32 +36,19 @@ class Consultation : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_consultation, container, false)
-        return view
+        return inflater.inflate(R.layout.fragment_container_supply, container, false)
     }
 
     override fun onStart() {
         super.onStart()
-
-        val dataList = ArrayList<docRecord>()
-        dataList.add(docRecord("Niraj", "01/01/2021", "General", "abcdefgh"))
-        dataList.add(docRecord("Saket", "01/01/2021", "General", "abcdefghi"))
-        dataList.add(docRecord("Diptark", "01/01/2021", "General", "abcdefghj"))
-        dataList.add(docRecord("Sagar", "01/01/2021", "General", "abcdefghk"))
-        dataList.add(docRecord("Sagar", "01/01/2021", "General", "abcdefghl"))
-        dataList.add(docRecord("Sagar", "01/01/2021", "General", "abcdefghm"))
-        recyclerView = view?.findViewById(R.id.recycler_view)
-        recyclerView?.apply {
-            layoutManager = LinearLayoutManager(activity)
-            val cAdapter = PastRecordsAdapter(dataList)
-            adapter = cAdapter
-        }
-
+        val fragment: Fragment = Supply()
+        val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace( R.id.fragmentContainerView, fragment)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
     }
-    override fun onResume() {
-        super.onResume()
-        Toast.makeText(context, "Container Consultation", Toast.LENGTH_LONG)
-    }
+
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -73,12 +56,12 @@ class Consultation : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment Consultation.
+         * @return A new instance of fragment containerSupply.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            Consultation().apply {
+            containerSupply().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
