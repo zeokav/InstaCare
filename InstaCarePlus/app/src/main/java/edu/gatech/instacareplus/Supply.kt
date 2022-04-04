@@ -1,16 +1,27 @@
 package edu.gatech.instacareplus
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException
+import com.google.android.gms.maps.*
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.GoogleMap;
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -27,7 +38,8 @@ class Supply : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
+//    private lateinit var mapView: MapView
+//    private lateinit var mMap: GoogleMap
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -43,18 +55,34 @@ class Supply : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_supply, container, false)
 
+//        mapView = view.findViewById<MapView>(R.id.mapView)
+//        mapView.onCreate(null)
+//        mapView.getMapAsync(this)
+
+        val mapButton = view.findViewById<Button>(R.id.mapButton)
+
+        mapButton.setOnClickListener{
+            val fragment: Fragment = ResourcesMap()
+            val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragmentContainerView, fragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
+
+
         val mAddFab = view.findViewById<ExtendedFloatingActionButton>(R.id.add_fab);
         // FAB button
         val mAddResource = view.findViewById<FloatingActionButton>(R.id.add_resources);
-        val mAddPersonFab =  view.findViewById<FloatingActionButton>(R.id.add_person_fab);
+        val mManageResources = view.findViewById<FloatingActionButton>(R.id.add_person_fab);
 
-        val addAlarmActionText = view.findViewById<TextView>(R.id.add_alarm_action_text);
-        val addPersonActionText = view.findViewById<TextView>(R.id.add_person_action_text);
+        val addResourceText = view.findViewById<TextView>(R.id.add_resources_text);
+        val manageResourceText = view.findViewById<TextView>(R.id.manage_resources_text);
 
         mAddResource.visibility = View.GONE
-        mAddPersonFab.visibility = View.GONE
-        addAlarmActionText.visibility = View.GONE
-        addPersonActionText.visibility = View.GONE
+        mManageResources.visibility = View.GONE
+        addResourceText.visibility = View.GONE
+        manageResourceText.visibility = View.GONE
 
         var isAllFabsVisible = false;
 
@@ -64,36 +92,39 @@ class Supply : Fragment() {
             if (!isAllFabsVisible) {
 
                 mAddResource.show()
-                mAddPersonFab.show()
-                addAlarmActionText.visibility = View.VISIBLE
-                addPersonActionText.visibility = View.VISIBLE
+                mManageResources.show()
+                addResourceText.visibility = View.VISIBLE
+                manageResourceText.visibility = View.VISIBLE
 
                 mAddFab.extend()
 
                 isAllFabsVisible = true
-            }
-            else {
+            } else {
 
                 mAddResource.hide()
-                mAddPersonFab.hide()
-                addAlarmActionText.visibility = View.GONE
-                addPersonActionText.visibility = View.GONE
+                mManageResources.hide()
+                addResourceText.visibility = View.GONE
+                manageResourceText.visibility = View.GONE
 
                 mAddFab.shrink()
                 isAllFabsVisible = false
             }
         }
-        mAddPersonFab.setOnClickListener {
-            Toast.makeText(context,"Person Added",Toast.LENGTH_SHORT).show()
+        mManageResources.setOnClickListener {
+            val fragment: Fragment = ManageSupplies()
+            val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragmentContainerView, fragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
         }
         mAddResource.setOnClickListener {
             val fragment: Fragment = AddSupply()
             val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace( R.id.fragmentContainerView, fragment)
+            fragmentTransaction.replace(R.id.fragmentContainerView, fragment)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
-            Toast.makeText(context, "Alarm Added", Toast.LENGTH_SHORT).show()
         }
 
         return view

@@ -17,6 +17,7 @@ import com.github.mikephil.charting.data.DataSet
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.utils.Utils
 import edu.gatech.instacareplus.R
 import edu.gatech.instacareplus.databinding.ActivityMainBinding
 import java.io.IOException
@@ -53,8 +54,19 @@ private lateinit var binding: ActivityMainBinding
         navView.setupWithNavController(navController)
 
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    override fun onStart() {
+        super.onStart()
         Thread(Runnable {
             try {
+                Utils.init(applicationContext)
                 val entries1: ArrayList<Entry> = ArrayList()
                 val entries2: ArrayList<Entry> = ArrayList()
                 val entries3: ArrayList<Entry> = ArrayList()
@@ -106,13 +118,6 @@ private lateinit var binding: ActivityMainBinding
                 e.printStackTrace()
             }
         }).start()
-
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
     }
 
     override fun onSupportNavigateUp(): Boolean {

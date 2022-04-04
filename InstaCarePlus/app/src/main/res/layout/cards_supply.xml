@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView android:layout_width="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_height="130dp"
+    android:layout_margin="4dp"
+    card_view:cardBackgroundColor="@color/blue_pill"
+    card_view:cardElevation="4dp"
+    card_view:cardCornerRadius="30dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="90dp"
+        android:background="@color/white"/>
+
+    <ImageButton
+        android:id="@+id/deleteButton"
+        android:layout_width="30dp"
+        android:layout_height="24dp"
+        card_view:srcCompat="@drawable/trash"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="330dp"
+        android:scaleType="fitCenter"
+        android:background="@null"/>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        card_view:srcCompat="@drawable/pills_res"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        />
+
+    <TextView
+        android:id="@+id/itemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="85dp"
+        android:ems="10"
+        android:textSize="20dp"
+        android:background="@null"
+        android:inputType="textPersonName"
+        android:text="Item"
+        android:enabled="false"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="85dp"
+        android:ems="10"
+        android:textSize="16dp"
+        android:background="@null"
+        android:inputType="text"
+        android:text="Description"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:layout_marginLeft="85dp"
+        android:ems="10"
+        android:textSize="16dp"
+        android:background="@null"
+        android:inputType="text"
+        android:text="Price"
+        android:textColor="@color/white"/>
+    <TextView
+        android:id="@+id/qtyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="16dp"
+        android:background="@null"
+        android:inputType="text"
+        android:text="Quantity: "
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/qty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="85dp"
+        android:textSize="16dp"
+        android:background="@null"
+        android:inputType="text"
+        android:text="1"
+        android:textColor="@color/white"/>
+
+
+</com.google.android.material.card.MaterialCardView>

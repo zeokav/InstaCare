@@ -24,6 +24,6 @@ RecyclerView.Adapter<MedAdapter.ViewHolder>() {
         class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val name = itemView.findViewById<TextView>(R.id.name)
             val instructions = itemView.findViewById<TextView>(R.id.instruction)
-            val reminder = itemView.findViewById<TextView>(R.id.alarm)
+            val reminder = itemView.findViewById<TextView>(R.id.alarmTime)
         }
 }

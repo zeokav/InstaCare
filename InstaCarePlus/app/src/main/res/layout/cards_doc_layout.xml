@@ -41,7 +41,7 @@
         android:layout_height="60dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
-        card_view:srcCompat="@drawable/user" />
+        card_view:srcCompat="@drawable/user_icon" />
 
     <TextView
         android:id="@+id/doctorName"

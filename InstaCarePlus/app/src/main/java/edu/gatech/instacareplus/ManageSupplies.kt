@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
-import org.w3c.dom.Text
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import edu.gatech.instacareplus.data.PastRecordsAdapter
+import edu.gatech.instacareplus.data.SuppliesAdapter
+import edu.gatech.instacareplus.data.SupplyItem
+import edu.gatech.instacareplus.data.docRecord
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,10 +19,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [AddSupply.newInstance] factory method to
+ * Use the [ManageSupplies.newInstance] factory method to
  * create an instance of this fragment.
  */
-class AddSupply : Fragment() {
+class ManageSupplies : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -38,26 +40,23 @@ class AddSupply : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_supply, container, false)
+        return inflater.inflate(R.layout.fragment_manage_supplies, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val addButton = view.findViewById<Button>(R.id.addButton)
-        addButton?.setOnClickListener {
-            val item = view.findViewById<EditText>(R.id.item)
-            val qty = view.findViewById<EditText>(R.id.qty)
-            val price = view.findViewById<EditText>(R.id.price)
-            val desc = view.findViewById<EditText>(R.id.desc)
-
-            if(item.text.isEmpty() || qty.text.isEmpty() || price.text.isEmpty() || desc.text.isEmpty())
-            {
-                Toast.makeText(context, "Some fields are left blank.", Toast.LENGTH_LONG).show()
-            }
-            else
-            {
-                Toast.makeText(context, "Item Added Successfully", Toast.LENGTH_LONG).show()
-            }
+        val dataList = ArrayList<SupplyItem>()
+        dataList.add(SupplyItem("Medicine1", "Available", "Rs. 100", "5"))
+        dataList.add(SupplyItem("Medicine1", "Available", "Rs. 100", "5"))
+        dataList.add(SupplyItem("Medicine1", "Available", "Rs. 100", "5"))
+        dataList.add(SupplyItem("Medicine1", "Available", "Rs. 100", "5"))
+        dataList.add(SupplyItem("Medicine1", "Available", "Rs. 100", "5"))
+        dataList.add(SupplyItem("Medicine1", "Available", "Rs. 100", "5"))
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
+        recyclerView?.apply {
+            layoutManager = LinearLayoutManager(activity)
+            val cAdapter = SuppliesAdapter(dataList)
+            adapter = cAdapter
         }
     }
 
@@ -68,12 +67,12 @@ class AddSupply : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment AddSupply.
+         * @return A new instance of fragment ManageSupplies.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            AddSupply().apply {
+            ManageSupplies().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

@@ -16,19 +16,19 @@ import edu.gatech.instacareplus.PatientVitals
 import edu.gatech.instacareplus.R
 
 
-class ConsultAdapter (val docList: ArrayList<patient>):
+class ConsultAdapter (val patientList: ArrayList<patient>):
 RecyclerView.Adapter<ConsultAdapter.ViewHolder>() {
         override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
             val v = LayoutInflater.from(p0.context).inflate(R.layout.cards_doc_layout, p0, false)
             return ViewHolder(v)
         }
         override fun getItemCount(): Int {
-            return docList.size
+            return patientList.size
         }
         override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
-            p0.name?.text = docList[p1].name
-            p0.patient_id?.text = docList[p1].patient_id
-            p0.avl?.text = docList[p1].avl
+            p0.name?.text = patientList[p1].name
+            p0.patient_id?.text = patientList[p1].patient_id
+            p0.avl?.text = patientList[p1].avl
             p0.cardview.setOnClickListener(View.OnClickListener { view ->
                 val activity = view.context as AppCompatActivity
                 val fragment: Fragment = PatientOptions()
