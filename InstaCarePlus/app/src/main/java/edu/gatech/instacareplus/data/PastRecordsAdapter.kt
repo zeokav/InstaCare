@@ -1,8 +1,10 @@
 package edu.gatech.instacareplus.data
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
@@ -34,7 +36,14 @@ RecyclerView.Adapter<PastRecordsAdapter.ViewHolder>() {
             p0.consultID?.text = docList[p1].consultID
             p0.pButton.setOnClickListener(View.OnClickListener { view ->
                 val activity = view.context as AppCompatActivity
+                val args = Bundle()
+                args.putString("docName", docList[p1].docName)
+                args.putString("docType", docList[p1].docType)
+                args.putString("consultDate", docList[p1].consultDate)
+                args.putString("consultID", docList[p1].consultID)
+
                 val fragment: Fragment = ShowPrescription()
+                fragment.arguments = args
                 val fragmentManager: FragmentManager = activity.supportFragmentManager
                 val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
                 fragmentTransaction.replace(R.id.fragmentContainerView , fragment)

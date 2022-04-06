@@ -1,5 +1,6 @@
 package edu.gatech.instacareplus.data
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,7 +32,12 @@ RecyclerView.Adapter<ConsultAdapter.ViewHolder>() {
             p0.avl?.text = patientList[p1].avl
             p0.cardview.setOnClickListener(View.OnClickListener { view ->
                 val activity = view.context as AppCompatActivity
+                val args = Bundle()
+                args.putString("name", patientList[p1].name)
+                args.putString("patient_id", patientList[p1].patient_id)
+
                 val fragment: Fragment = PatientOptions()
+                fragment.arguments = args
                 val fragmentManager: FragmentManager = activity.supportFragmentManager
                 val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
                 fragmentTransaction.replace(R.id.fragmentContainerView , fragment)

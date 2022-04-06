@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -43,6 +45,16 @@ class PatientOptions : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val pName = view.findViewById<TextView>(R.id.pName)
+        val pID = view.findViewById<TextView>(R.id.pId)
+
+        val b = arguments
+        val name = b?.getString("name")
+        val patientID = b?.getString("patient_id")
+        pName.text = name
+        pID.text = patientID
+
         val chatButton = view.findViewById(R.id.chatButton) as Button
         val vitalsButton = view.findViewById(R.id.vitalsButton) as Button
         val rxButton = view.findViewById(R.id.rxButton) as Button

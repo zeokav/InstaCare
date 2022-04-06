@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +35,14 @@ class ShowPrescription : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_show_prescription, container, false)
+        val view = inflater.inflate(R.layout.fragment_show_prescription, container, false)
+        val b = arguments
+        val docName = b?.getString("docName")
+        val docType = b?.getString("docType")
+        val consultDate = b?.getString("consultDate")
+        val consultID = b?.getString("consultID")
+        Toast.makeText(context, docName + " " + docType + " " + consultDate + " " + consultID, Toast.LENGTH_LONG).show()
+        return view
     }
 
     companion object {

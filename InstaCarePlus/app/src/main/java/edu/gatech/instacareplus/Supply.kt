@@ -1,27 +1,18 @@
 package edu.gatech.instacareplus
 
-import android.Manifest
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException
 import com.google.android.gms.maps.*
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.GoogleMap;
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -62,7 +53,11 @@ class Supply : Fragment() {
         val mapButton = view.findViewById<Button>(R.id.mapButton)
 
         mapButton.setOnClickListener{
+            val args = Bundle()
+            val searchText = view.findViewById<EditText>(R.id.searchText)
+            args.putString("searchItem", searchText.text.toString())
             val fragment: Fragment = ResourcesMap()
+            fragment.arguments = args
             val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.fragmentContainerView, fragment)
