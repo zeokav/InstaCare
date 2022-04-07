@@ -69,7 +69,7 @@ public class ResourceController {
         return ResponseEntity.ok(resourceRepository.save(resource));
     }
 
-    @PostMapping("/find")
+    @GetMapping("/find")
     public ResponseEntity<List<Resource>> findResources(@RequestParam("q") String query) {
         return ResponseEntity.ok(resourceRepository.findResourceByAvailableAndResourceNameContaining(1, query));
     }
