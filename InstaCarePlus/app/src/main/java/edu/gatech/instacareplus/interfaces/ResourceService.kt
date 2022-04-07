@@ -18,5 +18,5 @@ interface ResourceService {
     fun claimResource(@Body resourceClaimRequest: ResourceClaimRequest): Call<Resource>
 
     @GET("user-service/resources/find")
-    fun findResources(@Query("q") query: String): Response<List<Resource>>
+    fun findResources(@Query("q") query: String): Call<List<Resource>>
 }

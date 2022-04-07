@@ -12,5 +12,5 @@ interface VitalsService {
     fun registerVitals(@Body vitalsRegistrationRequest: VitalsRegistrationRequest): Call<Any>
 
     @GET("user-service/vitals/retrieve")
-    fun getVitals(@Query("user") userId: Integer, @Query("limit") limit:Integer): Response<List<VitalPoint>>
+    fun getVitals(@Query("user") userId: Integer, @Query("limit") limit:Integer): Call<List<VitalPoint>>
 }
