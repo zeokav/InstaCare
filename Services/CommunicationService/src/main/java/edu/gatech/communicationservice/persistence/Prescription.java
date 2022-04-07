@@ -41,6 +41,9 @@ public class Prescription {
     @ToString.Exclude
     private Set<Medicine> medicines = new LinkedHashSet<>();
 
+    @Column(name = "notes", nullable = false)
+    private String notes;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

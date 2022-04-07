@@ -31,6 +31,14 @@ CREATE TABLE IF NOT EXISTS "consultation_queue"
 );
 CREATE INDEX IF NOT EXISTS queue_idx ON consultation_queue (added_on, is_assigned);
 
+CREATE TABLE IF NOT EXISTS "messages"
+(
+    message_id serial PRIMARY KEY,
+    from_patient integer NOT NULL,
+    consultation_id integer references consultation_queue(consultation_id) NOT NULL,
+    message_content varchar (500) NOT NULL
+);
+CREATE INDEX IF NOT EXISTS message_idx ON messages (consultation_id, message_id);
 
 CREATE TABLE IF NOT EXISTS "resources"
 (
