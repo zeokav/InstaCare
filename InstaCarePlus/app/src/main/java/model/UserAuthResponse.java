@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 @Builder
 public class UserAuthResponse {
-    private String authToken;
-    private String scope;
+    public String authToken;
+    public String scope;
 }

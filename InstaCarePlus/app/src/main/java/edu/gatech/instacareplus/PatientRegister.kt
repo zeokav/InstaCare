@@ -17,6 +17,7 @@ class PatientRegister : AppCompatActivity() {
 
     var dob: EditText? = null
     var cal = Calendar.getInstance()
+    var scope : String = ""
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,9 +52,15 @@ class PatientRegister : AppCompatActivity() {
                 request.fullName = fname.toString()
                 request.email = email.toString()
                 request.password = pwd.toString()
-                request.dateOfBirth = LocalDate.parse(dt)
+                request.dateOfBirth = dt.toString()
+                Toast.makeText(this, "Calling auth service", Toast.LENGTH_LONG).show()
                 authservice.handleNewPatient(request){
-
+                    if(it?.scope != null)
+                    {
+                        scope = it?.scope
+                        Toast.makeText(this, "Registration Successfull", Toast.LENGTH_LONG).show()
+                        finish()
+                    }
                 }
             }
         }
@@ -68,7 +75,7 @@ class PatientRegister : AppCompatActivity() {
         }
     }
     private fun updateDateInView() {
-        val myFormat = "MM-dd-yy" // mention the format you need
+        val myFormat = "yyyy-MM-dd" // mention the format you need
         val sdf = SimpleDateFormat(myFormat, Locale.US)
         dob?.setText(sdf.format(cal.getTime()))
     }
