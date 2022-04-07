@@ -32,17 +32,20 @@ public class Resource {
     @Column(name = "resource_qty", nullable = false)
     private Integer resourceQty;
 
-    @Column(name = "location_x", nullable = false)
-    private Double locationX;
+    @Column(name = "latitude", nullable = false)
+    private Double latitude;
 
-    @Column(name = "location_y", nullable = false)
-    private Double locationY;
+    @Column(name = "longitude", nullable = false)
+    private Double longitude;
 
     @Column(name = "price", nullable = false)
-    private Integer price;
+    private Double price;
 
     @Column(name = "notes", length = 200)
     private String notes;
+
+    @Column(name = "available", nullable = false)
+    private Integer available;
 
     @Override
     public boolean equals(Object o) {
