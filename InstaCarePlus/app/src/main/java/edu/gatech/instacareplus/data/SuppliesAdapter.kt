@@ -29,7 +29,7 @@ class SuppliesAdapter (val supplyList: ArrayList<SupplyItem>):
         p0.desc?.text = supplyList[p1].itemDesc
         p0.price?.text = supplyList[p1].itemPrice
         p0.qty?.text = supplyList[p1].itemQty
-        p0.deleteButton.setOnClickListener(View.OnClickListener { view ->
+        p0.deleteButton.setOnClickListener(View.OnClickListener {
             supplyList.removeAt(p1)
             notifyItemRemoved(p1)
             notifyItemRangeChanged(p1, supplyList.size)

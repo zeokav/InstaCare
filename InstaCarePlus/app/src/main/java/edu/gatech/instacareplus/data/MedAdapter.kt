@@ -10,7 +10,7 @@ import edu.gatech.instacareplus.R
 class MedAdapter (val medList: ArrayList<MedItem>):
 RecyclerView.Adapter<MedAdapter.ViewHolder>() {
         override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
-            val v = LayoutInflater.from(p0?.context).inflate(R.layout.cards_medi_layout, p0, false)
+            val v = LayoutInflater.from(p0.context).inflate(R.layout.cards_medi_layout, p0, false)
             return ViewHolder(v);
         }
         override fun getItemCount(): Int {
