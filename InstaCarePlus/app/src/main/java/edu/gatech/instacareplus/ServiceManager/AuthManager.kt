@@ -1,4 +1,4 @@
-package edu.gatech.instacareplus
+package edu.gatech.instacareplus.ServiceManager
 import edu.gatech.instacareplus.interfaces.AuthService
 import model.LoginRequest
 import model.NewDoctorRequest
@@ -7,7 +7,6 @@ import model.UserAuthResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
 
 class AuthManager {
 

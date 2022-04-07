@@ -6,10 +6,10 @@ import java.time.LocalDate;
 
 @Data
 public class NewDoctorRequest {
-    private String fullName;
-    private LocalDate dateOfBirth;
-    private String email;
-    private String password;
-    private String specialty;
-    private String verified;
+    public String fullName;
+    public LocalDate dateOfBirth;
+    public String email;
+    public String password;
+    public String specialty;
+    public String verified;
 }

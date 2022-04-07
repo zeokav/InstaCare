@@ -1,16 +1,13 @@
-package edu.gatech.instacareplus
+package edu.gatech.instacareplus.supply
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import edu.gatech.instacareplus.data.PastRecordsAdapter
-import edu.gatech.instacareplus.data.SuppliesAdapter
-import edu.gatech.instacareplus.data.SupplyItem
-import edu.gatech.instacareplus.data.docRecord
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import edu.gatech.instacareplus.R
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,10 +16,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ManageSupplies.newInstance] factory method to
+ * Use the [containerSupply.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ManageSupplies : Fragment() {
+class containerSupply : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -40,24 +37,17 @@ class ManageSupplies : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_manage_supplies, container, false)
+        return inflater.inflate(R.layout.fragment_container_supply, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val dataList = ArrayList<SupplyItem>()
-        dataList.add(SupplyItem("Medicine1", "Available", "Rs. 100", "5"))
-        dataList.add(SupplyItem("Medicine1", "Available", "Rs. 100", "5"))
-        dataList.add(SupplyItem("Medicine1", "Available", "Rs. 100", "5"))
-        dataList.add(SupplyItem("Medicine1", "Available", "Rs. 100", "5"))
-        dataList.add(SupplyItem("Medicine1", "Available", "Rs. 100", "5"))
-        dataList.add(SupplyItem("Medicine1", "Available", "Rs. 100", "5"))
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
-        recyclerView?.apply {
-            layoutManager = LinearLayoutManager(activity)
-            val cAdapter = SuppliesAdapter(dataList)
-            adapter = cAdapter
-        }
+    override fun onStart() {
+        super.onStart()
+        val fragment: Fragment = Supply()
+        val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace( R.id.fragmentContainerView, fragment)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
     }
 
     companion object {
@@ -67,12 +57,12 @@ class ManageSupplies : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment ManageSupplies.
+         * @return A new instance of fragment containerSupply.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            ManageSupplies().apply {
+            containerSupply().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

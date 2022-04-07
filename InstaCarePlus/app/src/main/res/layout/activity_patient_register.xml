@@ -42,6 +42,7 @@
         android:layout_marginEnd="360dp"
         android:fontFamily="@font/asap"
         android:paddingLeft="5dp"
+        android:selectAllOnFocus="true"
         android:text="@string/fname"
         android:textColor="@color/ic_theme"
         android:textFontWeight="600"
@@ -52,7 +53,7 @@
         app:layout_constraintTop_toBottomOf="@+id/h_line" />
 
     <EditText
-        android:id="@+id/item"
+        android:id="@+id/name"
         android:layout_width="150pt"
         android:layout_height="wrap_content"
         android:imeActionLabel="@string/action_sign_in_short"
@@ -79,10 +80,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.136"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item" />
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 
     <EditText
-        android:id="@+id/qty"
+        android:id="@+id/email"
         android:layout_width="150pt"
         android:layout_height="wrap_content"
         android:imeActionLabel="@string/action_sign_in_short"
@@ -106,17 +107,18 @@
         android:textColor="@color/ic_theme"
         android:textFontWeight="600"
         android:textSize="8pt"
+        android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/qty" />
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <EditText
-        android:id="@+id/price"
+        android:id="@+id/password"
         android:layout_width="150pt"
         android:layout_height="wrap_content"
         android:imeActionLabel="@string/action_sign_in_short"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -139,14 +141,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.09"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/price" />
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <EditText
         android:id="@+id/dob"
         android:layout_width="150pt"
         android:layout_height="wrap_content"
-        android:imeActionLabel="@string/action_sign_in_short"
+        android:focusable="false"
+        android:hint="@string/dob"
+        android:imeActionLabel="@string/dob"
         android:inputType="text"
+        android:textSize="8pt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/descText"

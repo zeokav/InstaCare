@@ -6,8 +6,8 @@ import java.time.LocalDate;
 
 @Data
 public class NewPatientRequest {
-    private String fullName;
-    private LocalDate dateOfBirth;
-    private String email;
-    private String password;
+    public String fullName;
+    public LocalDate dateOfBirth;
+    public String email;
+    public String password;
 }

@@ -1,4 +1,4 @@
-package edu.gatech.instacareplus
+package edu.gatech.instacareplus.supply
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +13,8 @@ import androidx.fragment.app.FragmentTransaction
 import com.google.android.gms.maps.*
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import edu.gatech.instacareplus.R
+import edu.gatech.instacareplus.ResourcesMap
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -45,7 +47,6 @@ class Supply : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_supply, container, false)
-
 //        mapView = view.findViewById<MapView>(R.id.mapView)
 //        mapView.onCreate(null)
 //        mapView.getMapAsync(this)

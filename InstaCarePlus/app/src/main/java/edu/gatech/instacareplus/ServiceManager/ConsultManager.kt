@@ -1,12 +1,9 @@
-package edu.gatech.instacareplus
-import edu.gatech.instacareplus.interfaces.AuthService
+package edu.gatech.instacareplus.ServiceManager
 import edu.gatech.instacareplus.interfaces.ConsultationService
 import model.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class ConsultManager {
 
