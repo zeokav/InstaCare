@@ -10,6 +10,8 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import edu.gatech.instacareplus.ServiceManager.VitalsManager
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * A simple [Fragment] subclass.
@@ -59,6 +61,9 @@ class PatientVitals : Fragment() {
                             newEntries2.add(0, Entry(i.toFloat(), it[i].bp.toFloat()))
                             newEntries3.add(0, Entry(i.toFloat(), it[i].ecg.toFloat()))
                         }
+                        newEntries1.reverse()
+                        newEntries2.reverse()
+                        newEntries3.reverse()
 
                         entries1 = newEntries1
                         entries2 = newEntries2
@@ -71,23 +76,22 @@ class PatientVitals : Fragment() {
 
         Thread {
             while (true) {
-                activity?.runOnUiThread {
-                    val v1 = LineDataSet(entries1, "")
-                    val v2 = LineDataSet(entries2, "")
-                    val v3 = LineDataSet(entries3, "")
-                    v1.setDrawValues(true)
-                    v2.setDrawValues(true)
-                    v3.setDrawValues(true)
+                val v1 = LineDataSet(entries1, "")
+                val v2 = LineDataSet(entries2, "")
+                val v3 = LineDataSet(entries3, "")
+                v1.setDrawValues(false)
+                v2.setDrawValues(false)
+                v3.setDrawValues(false)
 
-                    lineChart1.data = LineData(v1)
-                    lineChart1.invalidate()
+                lineChart1.data = LineData(v1)
+                lineChart1.invalidate()
 
-                    lineChart2.data = LineData(v2)
-                    lineChart2.invalidate()
+                lineChart2.data = LineData(v2)
+                lineChart2.invalidate()
 
-                    lineChart3.data = LineData(v3)
-                    lineChart3.invalidate()
-                }
+                lineChart3.data = LineData(v3)
+                lineChart3.invalidate()
+
                 Thread.sleep(3000)
             }
         }.start()
