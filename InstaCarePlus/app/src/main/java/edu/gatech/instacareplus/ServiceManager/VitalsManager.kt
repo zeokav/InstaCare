@@ -23,7 +23,7 @@ class VitalsManager {
     }
 
 
-    fun getVitals(userId: Integer, limit:Integer, onResult: (List<VitalPoint>?) -> Unit){
+    fun getVitals(userId: Int, limit:Int, onResult: (List<VitalPoint>?) -> Unit){
         val retrofit = ServiceBuilder.buildService(VitalsService::class.java)
         retrofit.getVitals(userId, limit).enqueue(
             object : Callback<List<VitalPoint>> {
