@@ -1,17 +1,9 @@
 package edu.gatech.instacareplus.ui.login
 
-import android.app.Activity
 import android.content.Intent
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
-import android.view.inputmethod.EditorInfo
-import android.widget.EditText
 import android.widget.Toast
 import edu.gatech.instacareplus.*
 import edu.gatech.instacareplus.ServiceManager.AuthManager
@@ -43,9 +35,10 @@ class LoginActivity : AppCompatActivity() {
 
             authservice.handleLoginRequest(request) {
                 if (it?.scope != null) {
-                    val scope = it?.scope
+                    val scope = it.scope
+                    val userId = it.userId
                     loading.visibility = View.GONE
-                    updateUiWithUser(scope)
+                    updateUiWithUser(scope, userId)
                 } else {
                     loading.visibility = View.GONE
                     showLoginFailed("Incorrect Email/Password")
@@ -56,26 +49,25 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    private fun updateUiWithUser(uname: String) {
+    private fun updateUiWithUser(uname: String, userId: Int) {
         val welcome = getString(R.string.welcome)
-        val displayName = uname
-        // TODO : initiate successful logged in experience
+
         Toast.makeText(
             applicationContext,
-            "$welcome $displayName",
+            "$welcome $uname",
             Toast.LENGTH_LONG
         ).show()
-        val EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE"
-        val message = uname
 
-        if (isDoctor == true) {
+        if (isDoctor) {
             intent = Intent(this, DoctorActivity::class.java).apply {
-                putExtra(EXTRA_MESSAGE, message)
+                putExtra("uname", uname)
+                putExtra("userId", userId)
             }
             startActivity(intent)
         } else {
             intent = Intent(this, MainActivity::class.java).apply {
-                putExtra(EXTRA_MESSAGE, message)
+                putExtra("uname", uname)
+                putExtra("userId", userId)
             }
             startActivity(intent)
         }

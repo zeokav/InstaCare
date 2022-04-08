@@ -19,9 +19,13 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.utils.Utils
 import edu.gatech.instacareplus.R
+import edu.gatech.instacareplus.ServiceManager.VitalsManager
 import edu.gatech.instacareplus.databinding.ActivityMainBinding
+import model.VitalPoint
+import model.VitalsRegistrationRequest
 import java.io.IOException
 import java.io.InputStream
+import java.time.Instant
 import java.util.Queue
 
 class MainActivity : AppCompatActivity() {
@@ -29,19 +33,21 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
 private lateinit var binding: ActivityMainBinding
     private lateinit var lineChart: LineChart
-    public lateinit var hello: String
-    public lateinit var v1: LineDataSet
-    public lateinit var v2: LineDataSet
-    public lateinit var v3: LineDataSet
+    lateinit var hello: String
+    lateinit var v1: LineDataSet
+    lateinit var v2: LineDataSet
+    lateinit var v3: LineDataSet
+    var patientId: Int = -1
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-     binding = ActivityMainBinding.inflate(layoutInflater)
-     setContentView(binding.root)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         setSupportActionBar(binding.appBarMain.toolbar)
+        patientId = intent.getIntExtra("userId", -1)
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
@@ -64,6 +70,7 @@ private lateinit var binding: ActivityMainBinding
 
     override fun onStart() {
         super.onStart()
+        val vitalsManager = VitalsManager()
         Thread(Runnable {
             try {
                 Utils.init(applicationContext)
@@ -87,6 +94,8 @@ private lateinit var binding: ActivityMainBinding
                 var index = 0.0
                 var l_index = 0
 
+                var vitalsBatch = ArrayList<VitalPoint>()
+
                 while(true) {
                     val line1 = lineList1[l_index]
                     val line2 = lineList2[l_index]
@@ -99,6 +108,22 @@ private lateinit var binding: ActivityMainBinding
                     entries1.add(Entry(index.toFloat(), p1.toFloat()))
                     entries2.add(Entry(index.toFloat(), p2.toFloat()))
                     entries3.add(Entry(index.toFloat(), p3.toFloat()))
+
+                    val time = System.currentTimeMillis()
+                    val vitalPoint = VitalPoint()
+                    vitalPoint.spo2 = p1.toDouble()
+                    vitalPoint.bp = p2.toDouble()
+                    vitalPoint.ecg = p2.toDouble()
+                    vitalPoint.timeMillis = time
+                    vitalsBatch.add(vitalPoint)
+
+                    if (vitalsBatch.size == 3) {
+                        val vitalsRegistrationRequest = VitalsRegistrationRequest()
+                        vitalsRegistrationRequest.patientId = patientId
+                        vitalsRegistrationRequest.batchedVitals = vitalsBatch
+                        vitalsManager.registerVitals(vitalsRegistrationRequest) {}
+                        vitalsBatch = ArrayList()
+                    }
 
                     v1 = LineDataSet(entries1, "")
                     v2 = LineDataSet(entries2, "")
