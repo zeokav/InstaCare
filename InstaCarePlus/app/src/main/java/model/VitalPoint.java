@@ -1,15 +1,8 @@
 package model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class VitalPoint {
-    private Long timeMillis;
-    private Double spo2;
-    private Double bp;
-    private Double ecg;
+    public Long timeMillis;
+    public Double spo2;
+    public Double bp;
+    public Double ecg;
 }

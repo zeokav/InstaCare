@@ -8,4 +8,5 @@ import lombok.Data;
 public class UserAuthResponse {
     public String authToken;
     public String scope;
+    public Integer userId;
 }
