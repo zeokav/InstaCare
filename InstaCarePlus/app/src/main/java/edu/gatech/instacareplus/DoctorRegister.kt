@@ -20,6 +20,7 @@ class DoctorRegister : AppCompatActivity() {
 
     var dob: EditText? = null
     var cal = Calendar.getInstance()
+    var scope : String = ""
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,16 +49,22 @@ class DoctorRegister : AppCompatActivity() {
 
             if (fname.isEmpty() || email.isEmpty() || pwd.isEmpty() || speciality.isEmpty()) {
                 Toast.makeText(this, "Some fields are left blank.", Toast.LENGTH_LONG).show()
-            } else {
+            }
+            else {
                 val authservice = AuthManager()
                 val request = NewDoctorRequest()
                 request.fullName = fname.toString()
                 request.email = email.toString()
                 request.password = pwd.toString()
                 request.specialty = speciality.toString()
-                request.dateOfBirth = LocalDate.parse(dt)
+                request.dateOfBirth = dt.toString()
                 authservice.handleNewDoctor(request) {
-
+                    if(it?.scope != null)
+                    {
+                        scope = it?.scope
+                        Toast.makeText(this, "Registration Successful", Toast.LENGTH_LONG).show()
+                        finish()
+                    }
                 }
             }
         }
@@ -73,7 +80,7 @@ class DoctorRegister : AppCompatActivity() {
         }
     }
     private fun updateDateInView() {
-        val myFormat = "MM-dd-yy" // mention the format you need
+        val myFormat = "yyyy-MM-dd" // mention the format you need
         val sdf = SimpleDateFormat(myFormat, Locale.US)
         dob?.setText(sdf.format(cal.getTime()))
     }

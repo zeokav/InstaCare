@@ -41,8 +41,7 @@ class PatientRegister : AppCompatActivity() {
             val email = (findViewById<EditText>(R.id.email)).text
             val pwd = (findViewById<EditText>(R.id.password)).text
             val dt = (findViewById<EditText>(R.id.dob)).text
-            if(fname.isEmpty() || email.isEmpty() || pwd.isEmpty() || dt.isEmpty())
-            {
+            if(fname.isEmpty() || email.isEmpty() || pwd.isEmpty() || dt.isEmpty()) {
                 Toast.makeText(this, "Some fields are left blank.", Toast.LENGTH_LONG).show()
             }
             else
@@ -53,12 +52,11 @@ class PatientRegister : AppCompatActivity() {
                 request.email = email.toString()
                 request.password = pwd.toString()
                 request.dateOfBirth = dt.toString()
-                Toast.makeText(this, "Calling auth service", Toast.LENGTH_LONG).show()
                 authservice.handleNewPatient(request){
                     if(it?.scope != null)
                     {
                         scope = it?.scope
-                        Toast.makeText(this, "Registration Successfull", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Registration Successful", Toast.LENGTH_LONG).show()
                         finish()
                     }
                 }

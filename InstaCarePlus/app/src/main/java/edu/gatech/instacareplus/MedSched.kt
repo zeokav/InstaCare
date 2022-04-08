@@ -1,15 +1,18 @@
 package edu.gatech.instacareplus
 
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import edu.gatech.instacareplus.data.ConsultAdapter
-import edu.gatech.instacareplus.data.MedAdapter
-import edu.gatech.instacareplus.data.MedItem
+import edu.gatech.instacareplus.ServiceManager.PrescriptionManager
+import edu.gatech.instacareplus.data.*
+import java.time.LocalDate
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,23 +61,49 @@ class MedSched : Fragment() {
         return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MedSched.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MedSched().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val sharedPref = activity?.getSharedPreferences("Reminders",Context.MODE_PRIVATE) ?: return
+        val prescService = PrescriptionManager()
+        val userId:Int = (activity as MainActivity).patientId
+
+        prescService.getPrescriptionList(userId){
+            if(it != null)
+            {
+                val dataList = ArrayList<MedItem>()
+                val currDate = LocalDate.now()
+                for(p in it)
+                {
+                    val setMedicines = p.medicines
+                    val issueDate = p.issueDate
+                    val dt: LocalDate = LocalDate.parse(issueDate)
+                    setMedicines.forEach {
+                        if (it != null) {
+                            val numDays = it.numDays
+                            val newDate = dt.plusDays(numDays.toLong())
+                            val reminder = sharedPref.getString(it.medId.toString(), "")
+                            if (newDate.isAfter(currDate)) {
+                                dataList.add(
+                                    MedItem(it.medicineName, it.notes, reminder.toString())
+                                )
+                            }
+                            else {
+                                if (reminder.toString().isEmpty()) {
+                                    sharedPref.edit().remove(it.medId.toString())
+                                }
+
+                            }
+                        }
+                    }
+                }
+                recyclerView = view?.findViewById(R.id.recycler_view)
+                recyclerView?.apply {
+                    layoutManager = LinearLayoutManager(activity)
+                    val cAdapter = MedAdapter(dataList)
+                    adapter = cAdapter
                 }
             }
+        }
     }
 }

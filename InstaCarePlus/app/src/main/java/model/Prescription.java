@@ -10,13 +10,9 @@ import lombok.Data;
 public class Prescription {
     public Integer id;
     public Doctor issuerDoctorUid;
-
     public Patient patientUid;
-
     public String issueDate;
-
     public Set<Medicine> medicines = new LinkedHashSet<>();
-
     public String notes;
 
 }
