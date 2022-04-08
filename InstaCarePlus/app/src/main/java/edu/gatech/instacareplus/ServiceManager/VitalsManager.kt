@@ -10,11 +10,11 @@ class VitalsManager {
     fun registerVitals(vitalsRegistrationRequest: VitalsRegistrationRequest, onResult: (Any?) -> Unit){
         val retrofit = ServiceBuilder.buildService(VitalsService::class.java)
         retrofit.registerVitals(vitalsRegistrationRequest).enqueue(
-            object : Callback<Any> {
-                override fun onFailure(call: Call<Any>, t: Throwable) {
+            object : Callback<Unit> {
+                override fun onFailure(call: Call<Unit>, t: Throwable) {
                     onResult(null)
                 }
-                override fun onResponse( call: Call<Any>, response: Response<Any>) {
+                override fun onResponse( call: Call<Unit>, response: Response<Unit>) {
                     val resp = response.body()
                     onResult(resp)
                 }

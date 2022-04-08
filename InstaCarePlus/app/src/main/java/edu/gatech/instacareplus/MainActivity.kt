@@ -1,9 +1,6 @@
 package edu.gatech.instacareplus
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
-import android.widget.Toast
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -12,28 +9,20 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.data.DataSet
 import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.utils.Utils
-import edu.gatech.instacareplus.R
 import edu.gatech.instacareplus.ServiceManager.VitalsManager
 import edu.gatech.instacareplus.databinding.ActivityMainBinding
 import model.VitalPoint
 import model.VitalsRegistrationRequest
 import java.io.IOException
 import java.io.InputStream
-import java.time.Instant
-import java.util.Queue
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 private lateinit var binding: ActivityMainBinding
-    private lateinit var lineChart: LineChart
-    lateinit var hello: String
     lateinit var v1: LineDataSet
     lateinit var v2: LineDataSet
     lateinit var v3: LineDataSet

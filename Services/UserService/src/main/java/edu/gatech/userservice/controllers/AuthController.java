@@ -80,7 +80,7 @@ public class AuthController {
         String hashedPass = DigestUtils.md5DigestAsHex(loginRequest.getPassword().getBytes(StandardCharsets.UTF_8));
         List<Doctor> doctors = this.doctorRepository.findDoctorByEmail(loginRequest.getEmail());
         if (!doctors.isEmpty()) {
-            if (doctors.get(0).getPasswordHash().equals(hashedPass)) {
+            if (doctors.get(0).getPasswordHash().startsWith(hashedPass)) {
                 return ResponseEntity.ok(UserAuthResponse.builder()
                         .authToken(this.authUtils.generateToken("doctor", loginRequest.getEmail()))
                         .scope("doctor")

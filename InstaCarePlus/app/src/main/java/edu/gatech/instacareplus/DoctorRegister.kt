@@ -13,7 +13,6 @@ import androidx.annotation.RequiresApi
 import edu.gatech.instacareplus.ServiceManager.AuthManager
 import model.NewDoctorRequest
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.*
 
 class DoctorRegister : AppCompatActivity() {
@@ -27,25 +26,23 @@ class DoctorRegister : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_doctor_register)
 
-        val registerButton = findViewById<Button>(R.id.register)
-        dob = findViewById<EditText>(R.id.dob)
-        val dateSetListener = object : DatePickerDialog.OnDateSetListener {
-            override fun onDateSet(view: DatePicker, year: Int, monthOfYear: Int,
-                                   dayOfMonth: Int) {
+        val registerButton = findViewById<Button>(R.id.doc_registration_btn)
+        dob = findViewById(R.id.dob)
+        val dateSetListener =
+            DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
                 cal.set(Calendar.YEAR, year)
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                 updateDateInView()
             }
-        }
 
         registerButton.setOnClickListener {
 
-            val fname = (findViewById<EditText>(R.id.name)).text
+            val fname = (findViewById<EditText>(R.id.fname)).text
             val email = (findViewById   <EditText>(R.id.email)).text
             val pwd = (findViewById<EditText>(R.id.password)).text
             val speciality = (findViewById<EditText>(R.id.speciality)).text
-            val dt = (findViewById<EditText>(R.id.dob)).text
+            val dt = dob?.text
 
             if (fname.isEmpty() || email.isEmpty() || pwd.isEmpty() || speciality.isEmpty()) {
                 Toast.makeText(this, "Some fields are left blank.", Toast.LENGTH_LONG).show()
@@ -61,7 +58,7 @@ class DoctorRegister : AppCompatActivity() {
                 authservice.handleNewDoctor(request) {
                     if(it?.scope != null)
                     {
-                        scope = it?.scope
+                        scope = it.scope
                         Toast.makeText(this, "Registration Successful", Toast.LENGTH_LONG).show()
                         finish()
                     }
