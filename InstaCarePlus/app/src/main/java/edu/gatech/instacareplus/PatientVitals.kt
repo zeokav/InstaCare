@@ -5,11 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
+import edu.gatech.instacareplus.ServiceManager.VitalsManager
 
 /**
  * A simple [Fragment] subclass.
@@ -17,15 +17,14 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class PatientVitals : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var name: String? = null
+    private var patientId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            name = it.getString("name")
+            patientId = "1"
         }
     }
 
@@ -34,7 +33,66 @@ class PatientVitals : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_patient_vitals, container, false)
+        val view = inflater.inflate(R.layout.fragment_patient_vitals, container, false)
+
+        val lineChart1 = view.findViewById<LineChart>(R.id.graph1)
+        val lineChart2 = view.findViewById<LineChart>(R.id.graph2)
+        val lineChart3 = view.findViewById<LineChart>(R.id.graph3)
+
+        val vitalsManager = VitalsManager()
+
+        var entries1 = ArrayList<Entry>()
+        var entries2 = ArrayList<Entry>()
+        var entries3 = ArrayList<Entry>()
+
+        Thread {
+            while (true) {
+                if (patientId != null) {
+                    vitalsManager.getVitals(patientId!!.toInt(), 100) {
+
+                        val newEntries1 = ArrayList<Entry>()
+                        val newEntries2 = ArrayList<Entry>()
+                        val newEntries3 = ArrayList<Entry>()
+
+                        for(i in it?.indices!!) {
+                            newEntries1.add(0, Entry(i.toFloat(), it[i].spo2.toFloat()))
+                            newEntries2.add(0, Entry(i.toFloat(), it[i].bp.toFloat()))
+                            newEntries3.add(0, Entry(i.toFloat(), it[i].ecg.toFloat()))
+                        }
+
+                        entries1 = newEntries1
+                        entries2 = newEntries2
+                        entries3 = newEntries3
+                    }
+                }
+                Thread.sleep(3000)
+            }
+        }.start()
+
+        Thread {
+            while (true) {
+                activity?.runOnUiThread {
+                    val v1 = LineDataSet(entries1, "")
+                    val v2 = LineDataSet(entries2, "")
+                    val v3 = LineDataSet(entries3, "")
+                    v1.setDrawValues(true)
+                    v2.setDrawValues(true)
+                    v3.setDrawValues(true)
+
+                    lineChart1.data = LineData(v1)
+                    lineChart1.invalidate()
+
+                    lineChart2.data = LineData(v2)
+                    lineChart2.invalidate()
+
+                    lineChart3.data = LineData(v3)
+                    lineChart3.invalidate()
+                }
+                Thread.sleep(3000)
+            }
+        }.start()
+
+        return view
     }
 
     companion object {
@@ -42,18 +100,13 @@ class PatientVitals : Fragment() {
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
          * @return A new instance of fragment PatientVitals.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance() =
             PatientVitals().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+                arguments = Bundle().apply {}
             }
     }
 }

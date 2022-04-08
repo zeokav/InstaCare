@@ -13,7 +13,6 @@ import model.LoginRequest
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-    public var isDoctor: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -26,7 +25,6 @@ class LoginActivity : AppCompatActivity() {
         val loading = binding.loading
 
         login.setOnClickListener {
-
             loading.visibility = View.VISIBLE
             val authservice = AuthManager()
             val request = LoginRequest()
@@ -38,27 +36,18 @@ class LoginActivity : AppCompatActivity() {
                     val scope = it.scope
                     val userId = it.userId
                     loading.visibility = View.GONE
-                    updateUiWithUser(scope, userId)
+                    updateUiWithUser(scope, userId, scope.equals("doctor"))
                 } else {
                     loading.visibility = View.GONE
                     showLoginFailed("Incorrect Email/Password")
                 }
             }
         }
-
-
     }
 
-    private fun updateUiWithUser(uname: String, userId: Int) {
-        val welcome = getString(R.string.welcome)
+    private fun updateUiWithUser(uname: String, userId: Int, isDoc: Boolean) {
 
-        Toast.makeText(
-            applicationContext,
-            "$welcome $uname",
-            Toast.LENGTH_LONG
-        ).show()
-
-        if (isDoctor) {
+        if (isDoc) {
             intent = Intent(this, DoctorActivity::class.java).apply {
                 putExtra("uname", uname)
                 putExtra("userId", userId)
