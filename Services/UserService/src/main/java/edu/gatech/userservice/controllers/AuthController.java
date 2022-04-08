@@ -48,10 +48,12 @@ public class AuthController {
         String hashedPass = DigestUtils.md5DigestAsHex(request.getPassword().getBytes(StandardCharsets.UTF_8));
         patient.setPasswordHash(hashedPass);
 
-        this.patientRepository.save(patient);
+        patient = this.patientRepository.save(patient);
         return ResponseEntity.ok(UserAuthResponse.builder()
                 .authToken(this.authUtils.generateToken("patient", request.getEmail()))
-                .scope("patient").build());
+                .scope("patient")
+                .userId(patient.getId())
+                .build());
     }
 
     @PostMapping("/new-doctor")
@@ -64,10 +66,12 @@ public class AuthController {
         doctor.setPasswordHash(hashedPass);
         doctor.setSpecialty(request.getSpecialty());
 
-        this.doctorRepository.save(doctor);
+        doctor = this.doctorRepository.save(doctor);
         return ResponseEntity.ok(UserAuthResponse.builder()
                 .authToken(this.authUtils.generateToken("doctor", request.getEmail()))
-                .scope("doctor").build());
+                .scope("doctor")
+                .userId(doctor.getId())
+                .build());
     }
 
 
@@ -80,6 +84,7 @@ public class AuthController {
                 return ResponseEntity.ok(UserAuthResponse.builder()
                         .authToken(this.authUtils.generateToken("doctor", loginRequest.getEmail()))
                         .scope("doctor")
+                        .userId(doctors.get(0).getId())
                         .build());
             } else {
                 log.info("No doctor found, checking patients.");
@@ -93,6 +98,7 @@ public class AuthController {
                 return ResponseEntity.ok(UserAuthResponse.builder()
                         .authToken(this.authUtils.generateToken("patient", loginRequest.getEmail()))
                         .scope("patient")
+                        .userId(patients.get(0).getId())
                         .build());
             } else {
                 log.info("Wrong credentials.");
