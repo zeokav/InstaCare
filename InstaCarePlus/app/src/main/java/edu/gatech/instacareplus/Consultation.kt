@@ -49,31 +49,29 @@ class Consultation : Fragment() {
 
     override fun onStart() {
         super.onStart()
-
         val prescService = PrescriptionManager()
-        val request = NewPatientRequest()
         val userId:Int = (activity as MainActivity).patientId
         prescService.getPrescriptionList(userId){
             if(it != null)
             {
-
+                val dataList = ArrayList<docRecord>()
+                for(p in it)
+                {
+                    val docName = p.issuerDoctorUid.fullName
+                    val consultDate = p.issueDate
+                    val docType = p.issuerDoctorUid.specialty
+                    val prescId = p.id.toString()
+                    dataList.add(docRecord(docName, consultDate, docType, prescId))
+                    //dataList.add(docRecord("Saket", "01/01/2021", "General", "abcdefghi"))
+                }
+                recyclerView = view?.findViewById(R.id.recycler_view)
+                recyclerView?.apply {
+                    layoutManager = LinearLayoutManager(activity)
+                    val cAdapter = PastRecordsAdapter(dataList)
+                    adapter = cAdapter
+                }
             }
         }
-
-        val dataList = ArrayList<docRecord>()
-        dataList.add(docRecord("Niraj", "01/01/2021", "General", "abcdefgh"))
-        dataList.add(docRecord("Saket", "01/01/2021", "General", "abcdefghi"))
-        dataList.add(docRecord("Diptark", "01/01/2021", "General", "abcdefghj"))
-        dataList.add(docRecord("Sagar", "01/01/2021", "General", "abcdefghk"))
-        dataList.add(docRecord("Sagar", "01/01/2021", "General", "abcdefghl"))
-        dataList.add(docRecord("Sagar", "01/01/2021", "General", "abcdefghm"))
-        recyclerView = view?.findViewById(R.id.recycler_view)
-        recyclerView?.apply {
-            layoutManager = LinearLayoutManager(activity)
-            val cAdapter = PastRecordsAdapter(dataList)
-            adapter = cAdapter
-        }
-
     }
     override fun onResume() {
         super.onResume()
