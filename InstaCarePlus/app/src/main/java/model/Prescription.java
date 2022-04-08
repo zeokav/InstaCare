@@ -8,15 +8,15 @@ import lombok.Data;
 
 @Data
 public class Prescription {
-    private Integer id;
-    private Doctor issuerDoctorUid;
+    public Integer id;
+    public Doctor issuerDoctorUid;
 
-    private Patient patientUid;
+    public Patient patientUid;
 
-    private LocalDate issueDate;
+    public String issueDate;
 
-    private Set<Medicine> medicines = new LinkedHashSet<>();
+    public Set<Medicine> medicines = new LinkedHashSet<>();
 
-    private String notes;
+    public String notes;
 
 }

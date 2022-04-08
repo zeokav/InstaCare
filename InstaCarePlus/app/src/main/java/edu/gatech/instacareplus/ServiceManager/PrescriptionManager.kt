@@ -23,7 +23,7 @@ class PrescriptionManager {
     }
 
 
-    fun getPrescriptionList(userId: Integer, onResult: (List<Prescription>?) -> Unit){
+    fun getPrescriptionList(userId: Int, onResult: (List<Prescription>?) -> Unit){
         val retrofit = ServiceBuilder.buildService(PrescriptionService::class.java)
         retrofit.getPrescriptionList(userId).enqueue(
             object : Callback<List<Prescription>> {

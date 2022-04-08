@@ -53,8 +53,6 @@ class AddSupply : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-
         super.onViewCreated(view, savedInstanceState)
         val addButton = view.findViewById<Button>(R.id.addButton)
         addButton?.setOnClickListener {

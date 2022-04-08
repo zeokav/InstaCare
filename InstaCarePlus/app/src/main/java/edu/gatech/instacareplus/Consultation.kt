@@ -8,7 +8,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import edu.gatech.instacareplus.ServiceManager.AuthManager
+import edu.gatech.instacareplus.ServiceManager.PrescriptionManager
 import edu.gatech.instacareplus.data.*
+import model.NewPatientRequest
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -46,6 +49,16 @@ class Consultation : Fragment() {
 
     override fun onStart() {
         super.onStart()
+
+        val prescService = PrescriptionManager()
+        val request = NewPatientRequest()
+        val userId:Int = (activity as MainActivity).patientId
+        prescService.getPrescriptionList(userId){
+            if(it != null)
+            {
+
+            }
+        }
 
         val dataList = ArrayList<docRecord>()
         dataList.add(docRecord("Niraj", "01/01/2021", "General", "abcdefgh"))

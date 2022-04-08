@@ -12,6 +12,10 @@ import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import edu.gatech.instacareplus.ServiceManager.AuthManager
+import edu.gatech.instacareplus.ServiceManager.ResManager
+import model.NewPatientRequest
+import model.Patient
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -57,8 +61,6 @@ class ResourcesMap : Fragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         val mMap = googleMap
         val b = arguments
-        val s = b?.getString("searchItem")
-        Toast.makeText(context, s.toString(), Toast.LENGTH_LONG).show()
         if (context?.let {
                 ActivityCompat.checkSelfPermission(
                     it,
@@ -81,10 +83,25 @@ class ResourcesMap : Fragment(), OnMapReadyCallback {
         }
         mMap.isMyLocationEnabled = true
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions()
-            .position(sydney)
-            .title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15f))
+        val resService = ResManager()
+        val query = b!!.getString("searchItem")
+        Toast.makeText(context, query.toString(), Toast.LENGTH_LONG).show()
+
+        if(query != null) {
+            resService.findResources(query) {
+                if (it != null) {
+                    for(res in it)
+                    {
+                        val patient: Patient = res.ownerUid
+                        val loc = LatLng(res.latitude, res.longitude)
+                        mMap.addMarker(MarkerOptions()
+                            .position(loc)
+                            .title(patient.fullName + "\n"+patient.email))
+                    }
+                }
+            }
+        }
+        val myLoc = LatLng(mMap.myLocation.latitude, mMap.myLocation.longitude)
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLoc, 15f))
     }
 }

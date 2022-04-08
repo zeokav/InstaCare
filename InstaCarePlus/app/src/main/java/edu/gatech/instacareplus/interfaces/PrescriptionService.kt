@@ -12,5 +12,5 @@ interface PrescriptionService {
     fun createPrescription(@Body patientData: PrescriptionRequest): Call<Any>
 
     @GET("user-service/prescription/history")
-    fun getPrescriptionList(@Query("user") userId: Integer): Call<List<Prescription>>
+    fun getPrescriptionList(@Query("user") userId: Int): Call<List<Prescription>>
 }

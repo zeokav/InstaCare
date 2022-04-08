@@ -44,6 +44,7 @@ class ManageSupplies : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val dataList = ArrayList<SupplyItem>()
         dataList.add(SupplyItem("Medicine1", "Available", "Rs. 100", "5"))
         dataList.add(SupplyItem("Medicine1", "Available", "Rs. 100", "5"))
@@ -57,25 +58,5 @@ class ManageSupplies : Fragment() {
             val cAdapter = SuppliesAdapter(dataList)
             adapter = cAdapter
         }
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ManageSupplies.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ManageSupplies().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }

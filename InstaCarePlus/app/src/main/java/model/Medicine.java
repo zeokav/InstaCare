@@ -1,9 +1,9 @@
 package model;
 
 public class Medicine {
-    private Long medId;
-    private Prescription prescription;
-    private String medicineName;
-    private Integer numDays;
-    private String notes;
+    public Long medId;
+    public Prescription prescription;
+    public String medicineName;
+    public Integer numDays;
+    public String notes;
 }

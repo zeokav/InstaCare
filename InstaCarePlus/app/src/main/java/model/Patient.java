@@ -1,9 +1,17 @@
 package model;
 
+
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 public class Patient {
-    private Long medId;
-    private Prescription prescription;
-    private String medicineName;
-    private Integer numDays;
-    private String notes;
+    public Integer id;
+    public String fullName;
+    public String dateOfBirth;
+    public String email;
+    public String passwordHash;
+    public Set<Resource> resources = new LinkedHashSet<>();
+    public Set<ConsultationQueue> consultationQueues = new LinkedHashSet<>();
+    public Set<Prescription> prescriptions = new LinkedHashSet<>();
+
 }

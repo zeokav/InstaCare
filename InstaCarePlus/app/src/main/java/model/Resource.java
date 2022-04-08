@@ -1,13 +1,14 @@
 package model;
 
 public class Resource {
-    private Long resId;
-    private Patient ownerUid;
-    private String resourceName;
-    private Integer resourceQty;
-    private Double latitude;
-    private Double longitude;
-    private Double price;
-    private String notes;
-    private Integer available;
+    public Long resId;
+    public Patient ownerUid;
+    public String resourceName;
+    public Integer resourceQty;
+    public Double latitude;
+    public Double longitude;
+    public Double price;
+    public String notes;
+    public Integer available;
 }
+
