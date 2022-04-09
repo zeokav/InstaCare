@@ -8,13 +8,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import edu.gatech.instacareplus.ServiceManager.ConsultManager
 import edu.gatech.instacareplus.data.*
-
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -22,17 +17,11 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class DocConsultation : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var doctorId: Int = -1
     private var recyclerView: RecyclerView? = null
-    private var isDoctor: Boolean? = true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        arguments?.getString("doctor_id")
     }
 
     override fun onCreateView(
@@ -41,25 +30,44 @@ class DocConsultation : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_consultation, container, false)
+        doctorId = (activity as DoctorActivity).doctorId
         return view
+    }
+
+    private fun startConsultationReqThread() {
+        val consultManager = ConsultManager()
+        Thread {
+            while(true) {
+                val dataList = ArrayList<patient>()
+                consultManager.getQueue("general") {
+                    if (it != null) {
+                        for(i in it.indices) {
+                            dataList.add(
+                                patient(it[i].patientUid.fullName,
+                                    it[i].patientUid.id.toString(),
+                                    "1 min",
+                                    doctorId,
+                                    it[i].consultationId
+                                )
+                            )
+                        }
+
+                        recyclerView = view?.findViewById(R.id.recycler_view)
+                        recyclerView?.apply {
+                            layoutManager = LinearLayoutManager(activity)
+                            val cAdapter = ConsultAdapter(dataList)
+                            adapter = cAdapter
+                        }
+                    }
+                }
+                Thread.sleep(3000);
+            }
+        }.start()
     }
 
     override fun onStart() {
         super.onStart()
-        val dataList = ArrayList<patient>()
-        dataList.add(patient("Niraj", "12345", "10 mins"))
-        dataList.add(patient("Saket", "12345", "15 mins"))
-        dataList.add(patient("Diptark", "12345", "15 mins"))
-        dataList.add(patient("Sagar", "12345", "17 mins"))
-        dataList.add(patient("Sagar", "12345", "19 mins"))
-        dataList.add(patient("Sagar", "12345", "25 mins"))
-        recyclerView = view?.findViewById(R.id.recycler_view)
-        recyclerView?.apply {
-            layoutManager = LinearLayoutManager(activity)
-            val cAdapter = ConsultAdapter(dataList)
-            adapter = cAdapter
-        }
-
+        startConsultationReqThread()
     }
     override fun onResume() {
         super.onResume()
@@ -74,13 +82,11 @@ class DocConsultation : Fragment() {
          * @param param2 Parameter 2.
          * @return A new instance of fragment Consultation.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(docId: String) =
             Consultation().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putString("doctor_id", docId)
                 }
             }
     }

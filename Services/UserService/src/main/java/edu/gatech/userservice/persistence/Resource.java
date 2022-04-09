@@ -1,5 +1,6 @@
 package edu.gatech.userservice.persistence;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -18,9 +19,10 @@ public class Resource {
     @Column(name = "resource_id", nullable = false)
     private Long resId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "owner_uid")
     @ToString.Exclude
+    @JsonManagedReference
     private Patient ownerUid;
 
     @Column(name = "resource_name", nullable = false, length = 50)

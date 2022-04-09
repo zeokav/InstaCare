@@ -1,5 +1,7 @@
 package edu.gatech.userservice.persistence;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -19,14 +21,16 @@ public class ConsultationQueue {
     @Column(name = "consultation_id", nullable = false)
     private Long consultationId;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "patient_uid", nullable = false)
     @ToString.Exclude
+    @JsonManagedReference
     private Patient patientUid;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "assigned_doctor_uid")
     @ToString.Exclude
+    @JsonManagedReference
     private Doctor assignedDoctorUid;
 
     @Column(name = "is_assigned", nullable = false)

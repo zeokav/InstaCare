@@ -1,5 +1,7 @@
 package edu.gatech.userservice.persistence;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -21,9 +23,10 @@ public class Medicine {
     @Column(name = "med_id", nullable = false)
     private Long medId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "prescription_id")
     @ToString.Exclude
+    @JsonManagedReference
     private Prescription prescription;
 
     @Column(name = "medicine_name", nullable = false, length = 100)

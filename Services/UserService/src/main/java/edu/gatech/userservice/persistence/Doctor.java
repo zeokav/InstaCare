@@ -1,5 +1,7 @@
 package edu.gatech.userservice.persistence;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -37,10 +39,12 @@ public class Doctor {
 
     @OneToMany(mappedBy = "assignedDoctorUid")
     @ToString.Exclude
+    @JsonBackReference
     private Set<ConsultationQueue> consultationQueues = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "issuerDoctorUid")
     @ToString.Exclude
+    @JsonBackReference
     private Set<Prescription> prescriptions = new LinkedHashSet<>();
 
     @Override

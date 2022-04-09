@@ -1,4 +1,5 @@
 package edu.gatech.instacareplus.ServiceManager
+
 import edu.gatech.instacareplus.interfaces.ConsultationService
 import model.*
 import retrofit2.Call

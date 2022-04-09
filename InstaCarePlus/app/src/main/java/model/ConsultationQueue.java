@@ -1,15 +1,13 @@
 package model;
 
-import java.time.Instant;
-
 import lombok.Data;
 
 @Data
 public class ConsultationQueue {
-    private Long consultationId;
-    private Patient patientUid;
-    private Doctor assignedDoctorUid;
-    private Integer isAssigned;
-    private String specialty;
-    private Instant addedOn;
+    public Long consultationId;
+    public Patient patientUid;
+    public Doctor assignedDoctorUid;
+    public Integer isAssigned;
+    public String specialty;
+    public String addedOn;
 }

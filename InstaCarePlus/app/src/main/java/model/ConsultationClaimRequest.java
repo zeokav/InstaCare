@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class ConsultationClaimRequest {
-    private Integer doctorId;
-    private Long consultationId;
+    public Integer doctorId;
+    public Long consultationId;
 }

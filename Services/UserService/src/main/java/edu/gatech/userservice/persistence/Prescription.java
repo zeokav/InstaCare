@@ -1,5 +1,7 @@
 package edu.gatech.userservice.persistence;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -21,14 +23,16 @@ public class Prescription {
     @Column(name = "prescription_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "issuer_doctor_uid")
     @ToString.Exclude
+    @JsonManagedReference
     private Doctor issuerDoctorUid;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "patient_uid")
     @ToString.Exclude
+    @JsonManagedReference
     private Patient patientUid;
 
     @Column(name = "issue_date", nullable = false)
@@ -36,6 +40,7 @@ public class Prescription {
 
     @OneToMany(mappedBy = "prescription")
     @ToString.Exclude
+    @JsonBackReference
     private Set<Medicine> medicines = new LinkedHashSet<>();
 
     @Column(name = "notes", nullable = false)
