@@ -74,7 +74,6 @@ class AddSupply : Fragment() {
                 offerRequest.quantity = Integer.parseInt(qty.text.toString())
                 offerRequest.price = qty.text.toString().toDouble()
 
-
                 if (ActivityCompat.checkSelfPermission(
                         requireContext(),
                         Manifest.permission.ACCESS_FINE_LOCATION

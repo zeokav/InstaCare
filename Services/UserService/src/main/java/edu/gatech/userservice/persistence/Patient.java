@@ -43,6 +43,7 @@ public class Patient {
 
     @OneToMany(mappedBy = "patientUid")
     @ToString.Exclude
+
     private Set<Prescription> prescriptions = new LinkedHashSet<>();
 
     @Override

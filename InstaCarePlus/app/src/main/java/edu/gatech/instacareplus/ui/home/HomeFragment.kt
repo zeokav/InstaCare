@@ -15,18 +15,14 @@ import edu.gatech.instacareplus.ui.patient_consultation.PatientConsultationFragm
 
 class HomeFragment : Fragment() {
 
-private var _binding: FragmentHomeBinding? = null
-  private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        ViewModelProvider(this).get(HomeViewModel::class.java)
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-
-        return binding.root
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,19 +30,13 @@ private var _binding: FragmentHomeBinding? = null
 
         val consultationButton = view.findViewById(R.id.consultation_start_button) as Button
         consultationButton.setOnClickListener {
-
-//            val fragment: Fragment = PatientConsultationFragment()
-//            fragment.arguments = arguments
-//            val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
-//            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-//            fragmentTransaction.replace(R.id.fragmentContainerView, fragment)
-//            fragmentTransaction.addToBackStack(null)
-//            fragmentTransaction.commit()
+            val fragment: Fragment = PatientConsultationFragment()
+            fragment.arguments = arguments
+            val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragmentContainerView, fragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
         }
-    }
-
-override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

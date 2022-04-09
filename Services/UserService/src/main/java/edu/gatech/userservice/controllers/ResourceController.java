@@ -74,4 +74,14 @@ public class ResourceController {
         return ResponseEntity.ok(resourceRepository.findResourceByAvailableAndResourceNameContaining(1, query));
     }
 
+    @GetMapping("/findbyUser")
+    public ResponseEntity<List<Resource>> findResourcesByUser(@RequestParam("q") Integer userID) {
+        Patient patient = this.patientRepository.findPatientById(userID);
+        if (patient == null) {
+            log.warn("Invalid user ID {}", userID);
+            return ResponseEntity.badRequest().body(null);
+        }
+        return ResponseEntity.ok(resourceRepository.findResourceByAvailableAndOwnerUid(1, patient));
+    }
+
 }

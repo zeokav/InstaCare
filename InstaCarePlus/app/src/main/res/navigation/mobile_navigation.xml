@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="edu.gatech.instacareplus.ui.home.HomeFragment"
+        android:name="edu.gatech.instacareplus.ui.patient_consultation.PatientContainer"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_patient_container" />
 
 
     <fragment
