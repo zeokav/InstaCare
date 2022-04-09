@@ -19,4 +19,7 @@ interface ResourceService {
 
     @GET("user-service/resources/find")
     fun findResources(@Query("q") query: String): Call<List<Resource>>
+
+    @GET("user-service/resources/findbyUser")
+    fun findResourcesByUser(@Query("q") query: Int): Call<List<Resource>>
 }

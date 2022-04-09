@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class ResourceClaimRequest {
-    private Integer userId;
-    private Long resourceId;
+    public Integer userId;
+    public Long resourceId;
 }

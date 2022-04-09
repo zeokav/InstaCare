@@ -3,6 +3,8 @@ package edu.gatech.instacareplus.data
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import edu.gatech.instacareplus.R
@@ -20,10 +22,19 @@ RecyclerView.Adapter<MedAdapter.ViewHolder>() {
             p0.name?.text = medList[p1].name
             p0.instructions?.text = medList[p1].instructions
             p0.reminder?.text = medList[p1].reminder
+            p0.alarmButton?.setOnClickListener{
+                if(p0.reminder.text.isEmpty()){
+                    //Open timepicker
+                }
+                else{
+                    p0.reminder.text = "";
+                }
+            }
         }
         class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val name = itemView.findViewById<TextView>(R.id.name)
             val instructions = itemView.findViewById<TextView>(R.id.instruction)
             val reminder = itemView.findViewById<TextView>(R.id.alarmTime)
+            val alarmButton = itemView.findViewById<ImageButton>(R.id.alarmButton)
         }
 }

@@ -7,9 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import edu.gatech.instacareplus.MainActivity
 import edu.gatech.instacareplus.R
+import edu.gatech.instacareplus.ServiceManager.ResManager
+import edu.gatech.instacareplus.data.MedItem
 import edu.gatech.instacareplus.data.SuppliesAdapter
 import edu.gatech.instacareplus.data.SupplyItem
+import model.Patient
+import java.time.LocalDate
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -45,18 +50,29 @@ class ManageSupplies : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val dataList = ArrayList<SupplyItem>()
-        dataList.add(SupplyItem("Medicine1", "Available", "Rs. 100", "5"))
-        dataList.add(SupplyItem("Medicine1", "Available", "Rs. 100", "5"))
-        dataList.add(SupplyItem("Medicine1", "Available", "Rs. 100", "5"))
-        dataList.add(SupplyItem("Medicine1", "Available", "Rs. 100", "5"))
-        dataList.add(SupplyItem("Medicine1", "Available", "Rs. 100", "5"))
-        dataList.add(SupplyItem("Medicine1", "Available", "Rs. 100", "5"))
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
-        recyclerView?.apply {
-            layoutManager = LinearLayoutManager(activity)
-            val cAdapter = SuppliesAdapter(dataList)
-            adapter = cAdapter
+        val userId:Int = (activity as MainActivity).patientId
+        val resService = ResManager()
+
+        resService.findResourcesByUser(userId) {
+            if (it != null) {
+                val dataList = ArrayList<SupplyItem>()
+                for (res in it) {
+                    val patient: Patient = res.ownerUid
+                    val itemName = res.resourceName
+                    val itemDesc = res.notes
+                    val itemPrice = res.price
+                    val qty = res.resourceQty
+                    val itemId = res.resId
+                    dataList.add(SupplyItem(itemName, itemDesc, itemPrice.toString(), qty.toString(), itemId))
+                    //dataList.add(SupplyItem("Medicine1", "Available", "Rs. 100", "5", 1))
+                }
+                val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
+                recyclerView?.apply {
+                    layoutManager = LinearLayoutManager(activity)
+                    val cAdapter = SuppliesAdapter(dataList, userId)
+                    adapter = cAdapter
+                }
+            }
         }
     }
 }

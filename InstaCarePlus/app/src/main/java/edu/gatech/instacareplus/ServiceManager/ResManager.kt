@@ -51,4 +51,19 @@ class ResManager {
             }
         )
     }
+
+    fun findResourcesByUser(userId: Int, onResult: (List<Resource>?) -> Unit){
+        val retrofit = ServiceBuilder.buildService(ResourceService::class.java)
+        retrofit.findResourcesByUser(userId).enqueue(
+            object : Callback<List<Resource>> {
+                override fun onFailure(call: Call<List<Resource>>, t: Throwable) {
+                    onResult(null)
+                }
+                override fun onResponse( call: Call<List<Resource>>, response: Response<List<Resource>>) {
+                    val resp = response.body()
+                    onResult(resp)
+                }
+            }
+        )
+    }
 }

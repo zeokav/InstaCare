@@ -44,8 +44,7 @@ class PatientRegister : AppCompatActivity() {
             if(fname.isEmpty() || email.isEmpty() || pwd.isEmpty() || dt.isEmpty()) {
                 Toast.makeText(this, "Some fields are left blank.", Toast.LENGTH_LONG).show()
             }
-            else
-            {
+            else {
                 val authservice = AuthManager()
                 val request = NewPatientRequest()
                 request.fullName = fname.toString()

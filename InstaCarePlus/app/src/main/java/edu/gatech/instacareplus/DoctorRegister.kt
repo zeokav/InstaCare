@@ -55,6 +55,7 @@ class DoctorRegister : AppCompatActivity() {
                 request.password = pwd.toString()
                 request.specialty = speciality.toString()
                 request.dateOfBirth = dt.toString()
+                request.verified = "True"
                 authservice.handleNewDoctor(request) {
                     if(it?.scope != null)
                     {
