@@ -26,7 +26,7 @@ class PatientVitals : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
             name = it.getString("name")
-            patientId = it.getString("patientId")
+            patientId = it.getString("patient_id")
         }
     }
 

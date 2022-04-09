@@ -46,7 +46,7 @@ RecyclerView.Adapter<ConsultAdapter.ViewHolder>() {
                 request.consultationId = patientList[p1].consultation_id
                 request.doctorId = patientList[p1].doctor_id
 
-                // TODO: Claim
+                consultationManager.claimConsultation(request) {}
 
                 val fragment: Fragment = PatientOptions()
                 fragment.arguments = args

@@ -22,7 +22,6 @@ private const val ARG_PARAM2 = "patient_id"
  * create an instance of this fragment.
  */
 class PatientOptions : Fragment() {
-    // TODO: Rename and change types of parameters
     private var name: String? = null
     private var patientId: String? = null
 
