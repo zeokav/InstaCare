@@ -32,6 +32,7 @@ class HomeFragment : Fragment() {
         consultationButton.setOnClickListener {
             val fragment: Fragment = PatientConsultationFragment()
             fragment.arguments = arguments
+
             val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.fragmentContainerView, fragment)
