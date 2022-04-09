@@ -22,12 +22,12 @@ public class ConsultationQueue {
     @Column(name = "consultation_id", nullable = false)
     private Long consultationId;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "patient_uid", nullable = false)
     @ToString.Exclude
     private Patient patientUid;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "assigned_doctor_uid")
     @ToString.Exclude
     private Doctor assignedDoctorUid;

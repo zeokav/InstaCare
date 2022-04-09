@@ -21,7 +21,7 @@ public class Medicine {
     @Column(name = "med_id", nullable = false)
     private Long medId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "prescription_id")
     @ToString.Exclude
     private Prescription prescription;

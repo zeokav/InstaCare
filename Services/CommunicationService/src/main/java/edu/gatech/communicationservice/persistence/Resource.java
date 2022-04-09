@@ -21,7 +21,7 @@ public class Resource {
     @Column(name = "resource_id", nullable = false)
     private Long resId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "owner_uid")
     @ToString.Exclude
     private Patient ownerUid;

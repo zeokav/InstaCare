@@ -24,7 +24,7 @@ public class Message {
     @Column(name = "from_patient", nullable = false)
     private Integer fromPatient;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "consultation_id", nullable = false)
     @ToString.Exclude
     private ConsultationQueue consultation;

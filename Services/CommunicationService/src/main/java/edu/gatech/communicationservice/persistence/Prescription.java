@@ -24,12 +24,12 @@ public class Prescription {
     @Column(name = "prescription_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "issuer_doctor_uid")
     @ToString.Exclude
     private Doctor issuerDoctorUid;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "patient_uid")
     @ToString.Exclude
     private Patient patientUid;
