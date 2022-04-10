@@ -69,6 +69,7 @@ class PatientOptions : Fragment() {
 
         rxButton.setOnClickListener {
             val fragment: Fragment = PrescriptionAdd()
+            fragment.arguments = arguments
             val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.replace( R.id.fragmentContainerView, fragment)
