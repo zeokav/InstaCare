@@ -19,7 +19,7 @@ import model.PrescriptionRequest
  */
 class PrescriptionAdd : Fragment() {
     private var patientId: Int = -1
-    private var doctorId: Long = -1
+    private var doctorId: Int = -1
     private val prescriptionManager = PrescriptionManager()
 
 
@@ -27,7 +27,7 @@ class PrescriptionAdd : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
             patientId = it.getString("patient_id")?.toInt()!!
-            doctorId = it.getLong("doctor_id")
+            doctorId = it.getInt("doctor_id")
         }
     }
 
@@ -44,7 +44,7 @@ class PrescriptionAdd : Fragment() {
 
         view.findViewById<Button>(R.id.add_prescription).setOnClickListener {
             val prescriptionRequest = PrescriptionRequest()
-            prescriptionRequest.doctorId = doctorId.toInt()
+            prescriptionRequest.doctorId = doctorId
             prescriptionRequest.patientId = patientId
 
             val medicineList = ArrayList<MedicineModel>()
@@ -52,6 +52,7 @@ class PrescriptionAdd : Fragment() {
             medicine.name = (view.findViewById<EditText>(R.id.med_name)).text.toString()
             medicine.notes = (view.findViewById<EditText>(R.id.med_notes)).text.toString()
             medicine.numDays = 7
+            medicineList.add(medicine)
 
             prescriptionRequest.medicineList = medicineList
             prescriptionRequest.notes = (view.findViewById<EditText>(R.id.dnote)).text.toString()

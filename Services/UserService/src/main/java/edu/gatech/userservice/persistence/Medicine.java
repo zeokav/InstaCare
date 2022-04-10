@@ -1,6 +1,5 @@
 package edu.gatech.userservice.persistence;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +18,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class Medicine {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "med_id", nullable = false)
     private Long medId;
 
