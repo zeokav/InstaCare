@@ -40,7 +40,7 @@ public class Prescription {
 
     @OneToMany(mappedBy = "prescription")
     @ToString.Exclude
-    @JsonBackReference
+    @JsonManagedReference
     private Set<Medicine> medicines = new LinkedHashSet<>();
 
     @Column(name = "notes", nullable = false)
