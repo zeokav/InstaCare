@@ -61,7 +61,7 @@ class Consultation : Fragment() {
                     val consultDate = p.issueDate
                     val docType = p.issuerDoctorUid.specialty
                     val prescId = p.id.toString()
-                    dataList.add(docRecord(docName, consultDate, docType, prescId))
+                    dataList.add(docRecord(docName, consultDate, docType, prescId, p))
                     //dataList.add(docRecord("Saket", "01/01/2021", "General", "abcdefghi"))
                 }
                 recyclerView = view?.findViewById(R.id.recycler_view)

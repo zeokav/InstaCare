@@ -90,7 +90,7 @@
             app:layout_constraintTop_toBottomOf="@+id/name" />
 
         <TextView
-            android:id="@+id/qty"
+            android:id="@+id/age"
             android:layout_width="100pt"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -122,7 +122,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.019"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/qty" />
+            app:layout_constraintTop_toBottomOf="@+id/age" />
 
         <TextView
             android:id="@+id/dnote"
@@ -167,15 +167,16 @@
                 android:id="@+id/med_table"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <TableRow>
+                <TableRow
+                    android:id="@+id/tRow">
                     <TextView
-                        android:hint="Medicine"
+                        android:id="@+id/medicine"
                         android:layout_width="60pt"
                         android:layout_height="wrap_content"
                         android:selectAllOnFocus="true"
                         android:textSize="16dp"/>
                     <TextView
-                        android:hint="@string/details"
+                        android:id="@+id/medNote"
                         android:layout_width="60pt"
                         android:layout_height="wrap_content"
                         android:selectAllOnFocus="true"

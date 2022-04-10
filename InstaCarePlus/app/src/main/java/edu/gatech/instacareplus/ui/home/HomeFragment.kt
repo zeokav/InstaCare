@@ -14,8 +14,6 @@ import edu.gatech.instacareplus.databinding.FragmentHomeBinding
 import edu.gatech.instacareplus.ui.patient_consultation.PatientConsultationFragment
 
 class HomeFragment : Fragment() {
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

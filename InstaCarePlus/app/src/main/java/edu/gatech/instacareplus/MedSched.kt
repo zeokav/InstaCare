@@ -43,22 +43,7 @@ class MedSched : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_med_sched, container, false)
-        val dataList = ArrayList<MedItem>()
-        dataList.add(MedItem("A","Before Breakfast","8.00 am"))
-        dataList.add(MedItem("B","After Dinner","7am"))
-        dataList.add(MedItem("C","Before Lunch",""))
-        dataList.add(MedItem("D","After Lunch",""))
-        dataList.add(MedItem("E","Before Dinner",""))
-        dataList.add(MedItem("F","After Dinner",""))
-        recyclerView = view.findViewById(R.id.recycler_view)
-        recyclerView?.apply {
-            layoutManager = LinearLayoutManager(activity)
-            val cAdapter = MedAdapter(dataList)
-            adapter = cAdapter
-
-        }
-        return view
+        return inflater.inflate(R.layout.fragment_med_sched, container, false)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

@@ -42,6 +42,25 @@ RecyclerView.Adapter<PastRecordsAdapter.ViewHolder>() {
                 args.putString("consultDate", docList[p1].consultDate)
                 args.putString("consultID", docList[p1].consultID)
 
+                val presc = docList[p1].presc
+                val name = presc.patientUid.fullName
+                val dob = presc.patientUid.dateOfBirth
+                val dnote = presc.notes
+                val medi : ArrayList<String> = ArrayList()
+                val medNotes : ArrayList<String> = ArrayList()
+                val medList = presc.medicines
+                medList.forEach {
+                    if (it != null) {
+                        medi.add(it.medicineName)
+                        medNotes.add(it.notes)
+                    }
+                }
+                args.putString("fullName", name)
+                args.putString("dob", dob)
+                args.putString("dnote", dnote)
+                args.putStringArrayList("medItems", medi)
+                args.putStringArrayList("medNotes", medNotes)
+
                 val fragment: Fragment = ShowPrescription()
                 fragment.arguments = args
                 val fragmentManager: FragmentManager = activity.supportFragmentManager

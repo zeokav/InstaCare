@@ -5,7 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TableLayout
+import android.widget.TableRow
+import android.widget.TextView
 import android.widget.Toast
+import org.w3c.dom.Text
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,10 +28,6 @@ class ShowPrescription : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
@@ -36,12 +36,41 @@ class ShowPrescription : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_show_prescription, container, false)
-        val b = arguments
-        val docName = b?.getString("docName")
-        val docType = b?.getString("docType")
-        val consultDate = b?.getString("consultDate")
-        val consultID = b?.getString("consultID")
-        Toast.makeText(context, docName + " " + docType + " " + consultDate + " " + consultID, Toast.LENGTH_LONG).show()
+        val args = arguments
+        val docName = args?.getString("docName")
+        val docType = args?.getString("docType")
+        val consultDate = args?.getString("consultDate")
+        val consultID = args?.getString("consultID")
+
+        val fullName = args?.getString("fullName")
+        val dob = args?.getString("dob")
+        val dNote = args?.getString("dnote")
+        val medItems = args?.getStringArrayList("medItems")
+        val medNotes = args?.getStringArrayList("medNotes")
+
+
+        val name = view.findViewById<TextView>(R.id.name)
+        val age = view.findViewById<TextView>(R.id.age)
+        val dnote = view.findViewById<TextView>(R.id.dnote)
+        name.text = fullName
+        age.text = dob
+        dnote.text = dNote
+
+        val tbl = view.findViewById<TableLayout>(R.id.med_table)
+        val tRow = view.findViewById<TableRow>(R.id.tRow)
+
+        if(medItems != null && medNotes!=null) {
+            tbl.removeAllViews()
+            for (i in medItems.indices) {
+                val med = tRow.findViewById<TextView>(R.id.medicine)
+                val mNote = tRow.findViewById<TextView>(R.id.medNote)
+                med.text = medItems[i]
+                mNote.text = medNotes[i]
+            }
+            tbl.addView(tRow)
+        }
+
+        //Toast.makeText(context, docName + " " + docType + " " + consultDate + " " + consultID, Toast.LENGTH_LONG).show()
         return view
     }
 
