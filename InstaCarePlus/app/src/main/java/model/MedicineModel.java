@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class MedicineModel {
-    String name;
-    Integer numDays;
-    String notes;
+    public String name;
+    public Integer numDays;
+    public String notes;
 }

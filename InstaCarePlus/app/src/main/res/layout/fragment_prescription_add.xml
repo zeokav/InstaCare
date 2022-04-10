@@ -39,74 +39,6 @@
             tools:layout_editor_absoluteX="64dp" />
 
         <TextView
-            android:id="@+id/itemText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="360dp"
-            android:fontFamily="@font/asap"
-            android:paddingLeft="5dp"
-            android:text="@string/fname"
-            android:textColor="@color/ic_theme"
-            android:textFontWeight="600"
-            android:textSize="8pt"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.027"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/h_line" />
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="100pt"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:imeActionLabel="@string/action_sign_in_short"
-            android:inputType="text"
-            android:selectAllOnFocus="true"
-            android:textSize="8pt"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.7"
-            app:layout_constraintLeft_toRightOf="@id/itemText"
-            app:layout_constraintStart_toStartOf="@id/itemText"
-            app:layout_constraintTop_toBottomOf="@+id/h_line" />
-
-        <TextView
-            android:id="@+id/ageText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="360dp"
-            android:fontFamily="@font/asap"
-            android:text="@string/age"
-            android:textColor="@color/ic_theme"
-            android:textFontWeight="600"
-            android:paddingLeft="5dp"
-            android:textSize="8pt"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.136"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
-
-        <TextView
-            android:id="@+id/qty"
-            android:layout_width="100pt"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="7dp"
-            android:imeActionLabel="@string/action_sign_in_short"
-            android:inputType="textEmailAddress"
-            android:selectAllOnFocus="true"
-            android:textSize="8pt"
-            app:layout_constraintBottom_toTopOf="@+id/priceText"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.703"
-            app:layout_constraintLeft_toRightOf="@id/ageText"
-            app:layout_constraintStart_toStartOf="@id/ageText"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
-
-        <TextView
             android:id="@+id/priceText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -122,7 +54,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.019"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/qty" />
+            app:layout_constraintTop_toBottomOf="@+id/h_line" />
 
         <EditText
             android:id="@+id/dnote"
@@ -170,6 +102,7 @@
                 <TableRow>
                     <EditText
                         android:hint="@string/medicine"
+                        android:id="@+id/med_name"
                         android:layout_width="60pt"
                         android:layout_height="wrap_content"
                         android:imeActionLabel="@string/action_sign_in_short"
@@ -178,6 +111,7 @@
                         android:textSize="12dp"/>
                     <EditText
                         android:hint="@string/details"
+                        android:id="@+id/med_notes"
                         android:layout_width="60pt"
                         android:layout_height="wrap_content"
                         android:imeActionLabel="@string/action_sign_in_short"
@@ -195,12 +129,10 @@
                         android:textColor="@color/white"/>
                 </TableRow>
             </TableLayout>
-
-
         </ScrollView>
 
         <Button
-            android:id="@+id/register"
+            android:id="@+id/add_prescription"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
