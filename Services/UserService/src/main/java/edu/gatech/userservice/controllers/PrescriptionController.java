@@ -53,7 +53,9 @@ public class PrescriptionController {
         prescription.setIssueDate(LocalDate.now());
         prescription.setIssuerDoctorUid(doctor);
         prescription.setPatientUid(patient);
-        this.prescriptionRepository.save(prescription);
+        prescription.setNotes(prescriptionRequest.getNotes());
+
+        prescription = this.prescriptionRepository.save(prescription);
 
         for (MedicineModel reqMedicine: prescriptionRequest.getMedicineList()) {
             Medicine medicine = new Medicine();
