@@ -13,6 +13,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import edu.gatech.instacareplus.MainActivity
 import edu.gatech.instacareplus.R
 import edu.gatech.instacareplus.ServiceManager.ResManager
 import model.ResourceOfferRequest
@@ -70,9 +71,9 @@ class AddSupply : Fragment() {
                 val resManager = ResManager()
                 val offerRequest = ResourceOfferRequest()
                 offerRequest.itemName = item.text.toString()
-                offerRequest.userId
+                offerRequest.userId = (activity as MainActivity).patientId
                 offerRequest.quantity = Integer.parseInt(qty.text.toString())
-                offerRequest.price = qty.text.toString().toDouble()
+                offerRequest.price = price.text.toString().toDouble()
 
                 if (ActivityCompat.checkSelfPermission(
                         requireContext(),
@@ -90,21 +91,23 @@ class AddSupply : Fragment() {
                     // to handle the case where the user grants the permission. See the documentation
                     // for ActivityCompat#requestPermissions for more details.
                 }
-                fusedLocationClient.lastLocation
-                    .addOnSuccessListener { location->
+                fusedLocationClient.lastLocation.addOnCompleteListener{
+                    val location = it.result
                         if (location != null) {
                             // use your location object
                             // get latitude , longitude and other info from this
                             offerRequest.latitude = location?.latitude
                             offerRequest.longitude = location?.longitude
+                            offerRequest.description = desc.text.toString()
+                            resManager.offerResource(offerRequest){
+                                if(it!=null)
+                                {
+                                    Toast.makeText(context, "Item Added Successfully", Toast.LENGTH_LONG).show()
+                                }
+                            }
                         }
 
                     }
-                offerRequest.description = desc.text.toString()
-                resManager.offerResource(offerRequest){
-
-                }
-                Toast.makeText(context, "Item Added Successfully", Toast.LENGTH_LONG).show()
             }
         }
     }

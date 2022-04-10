@@ -36,14 +36,10 @@ RecyclerView.Adapter<PastRecordsAdapter.ViewHolder>() {
             p0.consultID?.text = docList[p1].consultID
             p0.pButton.setOnClickListener(View.OnClickListener { view ->
                 val activity = view.context as AppCompatActivity
-                val args = Bundle()
-                args.putString("docName", docList[p1].docName)
-                args.putString("docType", docList[p1].docType)
-                args.putString("consultDate", docList[p1].consultDate)
-                args.putString("consultID", docList[p1].consultID)
 
                 val presc = docList[p1].presc
                 val name = presc.patientUid.fullName
+
                 val dob = presc.patientUid.dateOfBirth
                 val dnote = presc.notes
                 val medi : ArrayList<String> = ArrayList()
@@ -55,8 +51,7 @@ RecyclerView.Adapter<PastRecordsAdapter.ViewHolder>() {
                         medNotes.add(it.notes)
                     }
                 }
-                args.putString("fullName", name)
-                args.putString("dob", dob)
+                val args = Bundle()
                 args.putString("dnote", dnote)
                 args.putStringArrayList("medItems", medi)
                 args.putStringArrayList("medNotes", medNotes)

@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
@@ -31,13 +33,14 @@ class ResourcesMap : Fragment(), OnMapReadyCallback {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
     }
 
     override fun onCreateView(
@@ -87,21 +90,27 @@ class ResourcesMap : Fragment(), OnMapReadyCallback {
         val query = b!!.getString("searchItem")
         Toast.makeText(context, query.toString(), Toast.LENGTH_LONG).show()
 
-        if(query != null) {
+        if (query != null) {
             resService.findResources(query) {
                 if (it != null) {
-                    for(res in it)
-                    {
+                    for (res in it) {
                         val patient: Patient = res.ownerUid
                         val loc = LatLng(res.latitude, res.longitude)
-                        mMap.addMarker(MarkerOptions()
-                            .position(loc)
-                            .title(patient.fullName + "\n"+patient.email))
+                        mMap.addMarker(
+                            MarkerOptions()
+                                .position(loc)
+                                .title(patient.fullName + "\n" + patient.email)
+                        )
+                    }
+                    fusedLocationClient.lastLocation.addOnCompleteListener {
+                        val location = it.result
+                        if (location != null) {
+                            val myLoc = LatLng(location.latitude, location.longitude)
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLoc, 15f))
+                        }
                     }
                 }
             }
         }
-        val myLoc = LatLng(mMap.myLocation.latitude, mMap.myLocation.longitude)
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLoc, 15f))
     }
 }

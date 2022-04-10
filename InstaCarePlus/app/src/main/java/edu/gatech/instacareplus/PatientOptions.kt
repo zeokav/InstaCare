@@ -86,6 +86,20 @@ class PatientOptions : Fragment() {
                 return false
             }
         })
+
+        chatButton.setOnClickListener{
+            val fragment: Fragment = ChatFeature()
+            val args = Bundle()
+            args.putString("name", name)
+            args.putString("patientId", patientId)
+            fragment.arguments = arguments
+            val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace( R.id.fragmentContainerView, fragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
+
     }
 
     companion object {

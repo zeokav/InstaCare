@@ -37,23 +37,12 @@ class ShowPrescription : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_show_prescription, container, false)
         val args = arguments
-        val docName = args?.getString("docName")
-        val docType = args?.getString("docType")
-        val consultDate = args?.getString("consultDate")
-        val consultID = args?.getString("consultID")
 
-        val fullName = args?.getString("fullName")
-        val dob = args?.getString("dob")
         val dNote = args?.getString("dnote")
         val medItems = args?.getStringArrayList("medItems")
         val medNotes = args?.getStringArrayList("medNotes")
 
-
-        val name = view.findViewById<TextView>(R.id.name)
-        val age = view.findViewById<TextView>(R.id.age)
         val dnote = view.findViewById<TextView>(R.id.dnote)
-        name.text = fullName
-        age.text = dob
         dnote.text = dNote
 
         val tbl = view.findViewById<TableLayout>(R.id.med_table)

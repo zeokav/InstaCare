@@ -85,7 +85,7 @@ class MedSched : Fragment() {
                 recyclerView = view?.findViewById(R.id.recycler_view)
                 recyclerView?.apply {
                     layoutManager = LinearLayoutManager(activity)
-                    val cAdapter = MedAdapter(dataList)
+                    val cAdapter = MedAdapter(context, dataList)
                     adapter = cAdapter
                 }
             }
