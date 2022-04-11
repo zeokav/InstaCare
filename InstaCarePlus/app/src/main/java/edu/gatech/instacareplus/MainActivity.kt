@@ -27,6 +27,8 @@ private lateinit var binding: ActivityMainBinding
     lateinit var v2: LineDataSet
     lateinit var v3: LineDataSet
     var patientId: Int = -1
+    var uname: String = ""
+    var emailID: String= ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +39,8 @@ private lateinit var binding: ActivityMainBinding
 
         setSupportActionBar(binding.appBarMain.toolbar)
         patientId = intent.getIntExtra("userId", -1)
+        uname = intent.getStringExtra("uname").toString()
+        emailID = intent.getStringExtra("email").toString()
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView

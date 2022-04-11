@@ -41,6 +41,7 @@ RecyclerView.Adapter<ConsultAdapter.ViewHolder>() {
                 args.putString("patient_id", patientList[p1].patient_id)
                 args.putInt("doctor_id", patientList[p1].doctor_id)
                 args.putLong("consultation_id", patientList[p1].consultation_id)
+                args.putString("dob", patientList[p1].dob)
 
                 val request = ConsultationClaimRequest()
                 request.consultationId = patientList[p1].consultation_id

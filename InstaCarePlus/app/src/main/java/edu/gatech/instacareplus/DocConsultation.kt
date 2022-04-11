@@ -47,7 +47,8 @@ class DocConsultation : Fragment() {
                                     it[i].patientUid.id.toString(),
                                     "1 min",
                                     doctorId,
-                                    it[i].consultationId
+                                    it[i].consultationId,
+                                    it[i].patientUid.dateOfBirth.toString()
                                 )
                             )
                         }

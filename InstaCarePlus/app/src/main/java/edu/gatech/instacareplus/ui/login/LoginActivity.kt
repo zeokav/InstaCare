@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
                     val scope = it.scope
                     val userId = it.userId
                     loading.visibility = View.GONE
-                    updateUiWithUser(scope, userId, scope.equals("doctor"))
+                    updateUiWithUser(scope, userId, scope.equals("doctor"), username.text.toString())
                 } else {
                     loading.visibility = View.GONE
                     showLoginFailed("Incorrect Email/Password")
@@ -45,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateUiWithUser(uname: String, userId: Int, isDoc: Boolean) {
+    private fun updateUiWithUser(uname: String, userId: Int, isDoc: Boolean, email: String) {
 
         if (isDoc) {
             intent = Intent(this, DoctorActivity::class.java).apply {
@@ -56,7 +56,8 @@ class LoginActivity : AppCompatActivity() {
         } else {
             intent = Intent(this, MainActivity::class.java).apply {
                 putExtra("uname", uname)
-                putExtra("userId", userId)
+                putExtra("uname", userId)
+                putExtra("email", email)
             }
             startActivity(intent)
         }

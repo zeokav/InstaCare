@@ -22,12 +22,14 @@ private const val ARG_PARAM2 = "patient_id"
 class PatientOptions : Fragment() {
     private var name: String? = null
     private var patientId: String? = null
+    private var patientDOB: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             name = it.getString("name")
             patientId = it.getString("patient_id")
+            patientDOB = it.getString("dob")
         }
     }
 
@@ -44,16 +46,24 @@ class PatientOptions : Fragment() {
 
         val pName = view.findViewById<TextView>(R.id.pName)
         val pID = view.findViewById<TextView>(R.id.pId)
+        val dob = view.findViewById<TextView>(R.id.dob)
 
         val b = arguments
         val name = b?.getString("name")
         val patientID = b?.getString("patient_id")
+        val patientDOB = b?.getString("dob")
         pName.text = name
         pID.text = patientID
+        dob.text = patientDOB
 
         val chatButton = view.findViewById(R.id.chatButton) as Button
         val vitalsButton = view.findViewById(R.id.vitalsButton) as Button
         val rxButton = view.findViewById(R.id.rxButton) as Button
+        val doneButton = view.findViewById(R.id.doneButton) as Button
+
+        doneButton.setOnClickListener{
+            requireActivity().supportFragmentManager.popBackStackImmediate();
+        }
 
         vitalsButton.setOnClickListener {
             val fragment: Fragment = PatientVitals()

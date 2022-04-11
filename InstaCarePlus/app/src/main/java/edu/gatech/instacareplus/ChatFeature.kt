@@ -73,6 +73,8 @@ class ChatFeature(isDoctorInterface: Boolean) : Fragment() {
 
                             activity?.runOnUiThread(java.lang.Runnable {
                                 messageAdapter?.add(message)
+                                val c = messagesView?.count?.minus(1)
+                                messagesView?.setSelection(c!!);
                             })
                             lastMessageId = max(lastMessageId, it[i].messageId)
                         }
