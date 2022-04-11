@@ -36,7 +36,7 @@ public class InfluxService {
     }
 
     public List<VitalPoint> getVitals(Integer patientId, Integer limit) {
-        String queryString = "from(bucket:\"%s\") |> range(start:-50d) |> limit(n:%s)"
+        String queryString = "from(bucket:\"%s\") |> range(start:-50d) |> top(n:%s, columns:[\"_time\"])"
                 .formatted(patientId.toString(), limit.toString());
         List<FluxTable> fluxTables = influxDBClient.getQueryApi().query(queryString);
         List<VitalPoint> res = new ArrayList<>();
