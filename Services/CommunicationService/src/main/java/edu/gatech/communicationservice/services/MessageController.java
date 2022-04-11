@@ -28,7 +28,7 @@ public class MessageController {
     }
 
     @PostMapping("/write")
-    public ResponseEntity<String> writeMessage(MessageRegistrationRequest registrationRequest) {
+    public ResponseEntity<String> writeMessage(@RequestBody MessageRegistrationRequest registrationRequest) {
 
         Optional<ConsultationQueue> consultationQueue =
                 consultationQueueRepository.findById(registrationRequest.getConsultationId());
