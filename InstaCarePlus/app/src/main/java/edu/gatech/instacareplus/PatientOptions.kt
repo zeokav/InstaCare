@@ -88,7 +88,7 @@ class PatientOptions : Fragment() {
         })
 
         chatButton.setOnClickListener{
-            val fragment: Fragment = ChatFeature()
+            val fragment: Fragment = ChatFeature(true)
             val args = Bundle()
             args.putString("name", name)
             args.putString("patientId", patientId)

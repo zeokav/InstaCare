@@ -7,27 +7,35 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import android.widget.ImageButton
+import edu.gatech.instacareplus.ServiceManager.MessageManager
+import edu.gatech.instacareplus.data.MessageAdapter
+import edu.gatech.instacareplus.data.model.MemberData
+import edu.gatech.instacareplus.data.model.Message
+import model.MessageRegistrationRequest
+import kotlin.math.max
 
 /**
  * A simple [Fragment] subclass.
  * Use the [ChatFeature.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ChatFeature : Fragment() {
-    // TODO: Rename and change types of parameters
+class ChatFeature(isDoctorInterface: Boolean) : Fragment() {
     private var name: String? = null
     private var userId: String? = null
+    private var consultationId: Long = -1
+    private var lastMessageId = -1
+    private var messageAdapter: MessageAdapter? = null
+    private val messageService: MessageManager = MessageManager()
+
+    private var isDoctor = isDoctorInterface
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             name = it.getString("name")
-            userId = it.getString("patientId")
+            userId = it.getString("patient_id")
+            consultationId = it.getLong("consultation_id")
         }
     }
 
@@ -39,12 +47,60 @@ class ChatFeature : Fragment() {
         return inflater.inflate(R.layout.fragment_chat_feature, container, false)
     }
 
+    private fun startMessagePoller() {
+        Thread {
+            while (true) {
+                messageService.getMessages(consultationId.toInt(), lastMessageId) {
+                    if (it != null) {
+                        for (i in it.indices) {
+                            val message = Message()
+                            val memberData = MemberData()
+                            if (isDoctor) {
+                                message.belongsToCurrentUser = !it[i].fromPatient
+                                memberData.userId = 1
+                                memberData.name = "Doctor"
+                            } else {
+                                message.belongsToCurrentUser = it[i].fromPatient
+                                memberData.userId = 0
+                                memberData.name = "Patient"
+                            }
+
+                            message.memberData = memberData
+                            message.text = it[i].message
+
+                            messageAdapter?.add(message)
+                            lastMessageId = max(lastMessageId, it[i].messageId)
+                        }
+                    }
+                }
+
+                Thread.sleep(1000)
+            }
+        }.start()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        context?.let {
+            messageAdapter = MessageAdapter(it)
+        }
+
+        startMessagePoller()
+    }
+
     override fun onStart() {
         super.onStart()
         val chatMessage = view?.findViewById<EditText>(R.id.editText)
-        val chatButton = view?.findViewById<Button>(R.id.chatButton)
+        val chatButton = view?.findViewById<ImageButton>(R.id.sendMessageButton)
         chatButton?.setOnClickListener{
-            //sendMessage chatMessage.text.toString() CHECK MESSAGE LENGTH
+            if (chatMessage != null && chatMessage.text.isNotEmpty()) {
+                val messageRegistrationRequest = MessageRegistrationRequest()
+                messageRegistrationRequest.consultationId = consultationId
+                messageRegistrationRequest.fromPatient = !isDoctor
+                messageRegistrationRequest.message = chatMessage.text.toString()
+                messageService.registerMessage(messageRegistrationRequest) {}
+            }
         }
     }
 }
