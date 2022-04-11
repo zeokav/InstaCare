@@ -1,6 +1,9 @@
 package edu.gatech.instacareplus
 
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -70,12 +73,18 @@ class MedSched : Fragment() {
                             val reminder = sharedPref.getString(it.medId.toString(), "")
                             if (newDate.isAfter(currDate)) {
                                 dataList.add(
-                                    MedItem(it.medicineName, it.notes, reminder.toString())
+                                    MedItem(it.medicineName, it.notes, reminder.toString(), it.medId)
                                 )
                             }
                             else {
-                                if (reminder.toString().isEmpty()) {
+                                if (!reminder.toString().isEmpty()) {
                                     sharedPref.edit().remove(it.medId.toString())
+                                    val alarmManager: AlarmManager = requireActivity().getSystemService(
+                                        Context.ALARM_SERVICE
+                                    ) as AlarmManager
+                                    val intent = Intent(context, AlarmReceiver::class.java)
+                                    val pendingIntent: PendingIntent = PendingIntent.getBroadcast(context,it.medId.toInt(), intent, 0)
+                                    alarmManager.cancel(pendingIntent)
                                 }
 
                             }

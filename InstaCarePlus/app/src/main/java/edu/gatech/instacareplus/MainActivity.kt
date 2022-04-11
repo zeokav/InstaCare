@@ -1,4 +1,8 @@
 package edu.gatech.instacareplus
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
@@ -38,6 +42,7 @@ private lateinit var binding: ActivityMainBinding
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        createNotificationChannel()
 
         setSupportActionBar(binding.appBarMain.toolbar)
         patientId = intent.getIntExtra("userId", -1)
@@ -57,6 +62,20 @@ private lateinit var binding: ActivityMainBinding
         navView.setupWithNavController(navController)
 
 
+    }
+
+    private fun createNotificationChannel() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val name: CharSequence = "instacareReminderChannel"
+            val description = "Channel for Medicine Reminders"
+            val importance = NotificationManager.IMPORTANCE_HIGH
+            val channel = NotificationChannel("instacare", name, importance)
+            channel.description = description
+            val notificationManager = getSystemService(
+                NotificationManager::class.java
+            )
+            notificationManager.createNotificationChannel(channel)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
