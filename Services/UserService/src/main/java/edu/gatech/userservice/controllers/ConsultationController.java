@@ -53,6 +53,12 @@ public class ConsultationController {
         return ResponseEntity.ok(consultationQueueRepository.save(queueItem));
     }
 
+    @GetMapping("/list_live")
+    public ResponseEntity<List<ConsultationQueue>> getLiveConsultations(@RequestParam("specialty") String specialty) {
+        return ResponseEntity.ok(
+                consultationQueueRepository.findAllBySpecialtyAndIsAssignedOrderByAddedOnAsc(specialty, 1));
+    }
+
     @GetMapping("/list_available")
     public ResponseEntity<List<ConsultationQueue>> getQueue(@RequestParam("specialty") String specialty) {
         return ResponseEntity.ok(
