@@ -22,13 +22,6 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class ShowPrescription : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +34,7 @@ class ShowPrescription : Fragment() {
         val dNote = args?.getString("dnote")
         val medItems = args?.getStringArrayList("medItems")
         val medNotes = args?.getStringArrayList("medNotes")
+        val medDays = args?.getStringArrayList("medDays")
 
         val dnote = view.findViewById<TextView>(R.id.dnote)
         dnote.text = dNote
@@ -48,13 +42,15 @@ class ShowPrescription : Fragment() {
         val tbl = view.findViewById<TableLayout>(R.id.med_table)
         val tRow = view.findViewById<TableRow>(R.id.tRow)
 
-        if(medItems != null && medNotes!=null) {
+        if(medItems != null && medNotes!=null && medDays!=null) {
             tbl.removeAllViews()
             for (i in medItems.indices) {
                 val med = tRow.findViewById<TextView>(R.id.medicine)
                 val mNote = tRow.findViewById<TextView>(R.id.medNote)
+                val mDay = tRow.findViewById<TextView>(R.id.days)
                 med.text = medItems[i]
                 mNote.text = medNotes[i]
+                mDay.text = medDays[i]
             }
             tbl.addView(tRow)
         }

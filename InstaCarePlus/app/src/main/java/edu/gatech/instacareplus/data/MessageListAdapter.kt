@@ -33,8 +33,8 @@ class MessageAdapter(var context: Context) : BaseAdapter() {
     }
 
     // This is the backbone of the class, it handles the creation of single ListView row (chat bubble)
-    override fun getView(i: Int, convertView: View, viewGroup: ViewGroup): View {
-        var convertView = convertView
+    override fun getView(i: Int, convertView: View?, viewGroup: ViewGroup): View {
+        var convertView: View
         val holder = MessageViewHolder()
         val messageInflater =
             context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE) as LayoutInflater

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tRow1">
+    <EditText
+        android:hint="@string/medicine"
+        android:id="@+id/med_name"
+        android:layout_width="50pt"
+        android:layout_height="wrap_content"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:inputType="text"
+        android:selectAllOnFocus="true"
+        android:textSize="12dp"/>
+
+    <EditText
+        android:hint="Days"
+        android:id="@+id/days"
+        android:layout_width="30pt"
+        android:layout_height="wrap_content"
+        android:selectAllOnFocus="true"
+        android:textSize="12dp"/>
+
+    <EditText
+        android:hint="@string/details"
+        android:id="@+id/med_notes"
+        android:layout_width="70pt"
+        android:layout_height="wrap_content"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:inputType="text"
+        android:selectAllOnFocus="true"
+        android:textSize="12dp"/>
+</TableRow>

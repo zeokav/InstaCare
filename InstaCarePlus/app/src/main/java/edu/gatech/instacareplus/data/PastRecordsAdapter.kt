@@ -38,23 +38,23 @@ RecyclerView.Adapter<PastRecordsAdapter.ViewHolder>() {
                 val activity = view.context as AppCompatActivity
 
                 val presc = docList[p1].presc
-                val name = presc.patientUid.fullName
-
-                val dob = presc.patientUid.dateOfBirth
                 val dnote = presc.notes
                 val medi : ArrayList<String> = ArrayList()
                 val medNotes : ArrayList<String> = ArrayList()
+                val medDays: ArrayList<String> = ArrayList()
                 val medList = presc.medicines
                 medList.forEach {
                     if (it != null) {
                         medi.add(it.medicineName)
                         medNotes.add(it.notes)
+                        medDays.add(it.numDays.toString())
                     }
                 }
                 val args = Bundle()
                 args.putString("dnote", dnote)
                 args.putStringArrayList("medItems", medi)
                 args.putStringArrayList("medNotes", medNotes)
+                args.putStringArrayList("medDays", medDays)
 
                 val fragment: Fragment = ShowPrescription()
                 fragment.arguments = args

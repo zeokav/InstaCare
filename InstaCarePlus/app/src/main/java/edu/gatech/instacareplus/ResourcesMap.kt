@@ -99,7 +99,7 @@ class ResourcesMap : Fragment(), OnMapReadyCallback {
                         mMap.addMarker(
                             MarkerOptions()
                                 .position(loc)
-                                .title(patient.fullName + "\n" + patient.email)
+                                .title(patient.fullName + " : " + patient.email)
                         )
                     }
                     fusedLocationClient.lastLocation.addOnCompleteListener {

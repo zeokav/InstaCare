@@ -1,13 +1,13 @@
 package edu.gatech.instacareplus
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ListView
+import androidx.fragment.app.Fragment
 import edu.gatech.instacareplus.ServiceManager.MessageManager
 import edu.gatech.instacareplus.data.MessageAdapter
 import edu.gatech.instacareplus.data.model.MemberData
@@ -29,6 +29,7 @@ class ChatFeature(isDoctorInterface: Boolean) : Fragment() {
     private val messageService: MessageManager = MessageManager()
 
     private var isDoctor = isDoctorInterface
+    private var messagesView: ListView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,7 +69,9 @@ class ChatFeature(isDoctorInterface: Boolean) : Fragment() {
                             message.memberData = memberData
                             message.text = it[i].message
 
-                            messageAdapter?.add(message)
+                            activity?.runOnUiThread(java.lang.Runnable {
+                                messageAdapter?.add(message)
+                            })
                             lastMessageId = max(lastMessageId, it[i].messageId)
                         }
                     }
@@ -84,7 +87,12 @@ class ChatFeature(isDoctorInterface: Boolean) : Fragment() {
 
         context?.let {
             messageAdapter = MessageAdapter(it)
+            messagesView = view.findViewById(R.id.messages_view);
+            messagesView?.apply{
+                adapter = messageAdapter
+            }
         }
+
 
         startMessagePoller()
     }
@@ -100,6 +108,7 @@ class ChatFeature(isDoctorInterface: Boolean) : Fragment() {
                 messageRegistrationRequest.fromPatient = !isDoctor
                 messageRegistrationRequest.message = chatMessage.text.toString()
                 messageService.registerMessage(messageRegistrationRequest) {}
+                chatMessage.setText("")
             }
         }
     }

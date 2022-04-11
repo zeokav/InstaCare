@@ -5,9 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
+import androidx.core.view.children
 import edu.gatech.instacareplus.ServiceManager.PrescriptionManager
 import model.MedicineModel
 import model.PrescriptionRequest
@@ -51,31 +50,15 @@ class PrescriptionAdd : Fragment() {
             val medicine = MedicineModel()
             medicine.name = (view.findViewById<EditText>(R.id.med_name)).text.toString()
             medicine.notes = (view.findViewById<EditText>(R.id.med_notes)).text.toString()
-            medicine.numDays = 7
+            medicine.numDays = ((view.findViewById<EditText>(R.id.days)).text.toString()).toInt()
             medicineList.add(medicine)
 
             prescriptionRequest.medicineList = medicineList
             prescriptionRequest.notes = (view.findViewById<EditText>(R.id.dnote)).text.toString()
             prescriptionManager.createPrescription(prescriptionRequest){
                 Toast.makeText(context, "Prescription added!", Toast.LENGTH_LONG).show()
+                requireActivity().supportFragmentManager.popBackStackImmediate();
             }
         }
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PrescriptionAdd.
-         */
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PrescriptionAdd().apply {
-                arguments = Bundle().apply {
-                }
-            }
     }
 }

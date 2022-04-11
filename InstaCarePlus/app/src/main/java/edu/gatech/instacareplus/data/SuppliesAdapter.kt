@@ -53,9 +53,9 @@ class SuppliesAdapter (val supplyList: ArrayList<SupplyItem>, val userId : Int):
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name = itemView.findViewById<TextView>(R.id.itemName)
         val desc = itemView.findViewById<TextView>(R.id.desc)
-        val price = itemView.findViewById<TextView>(R.id.available)
-        val qty = itemView.findViewById<TextView>(R.id.available)
+        val price = itemView.findViewById<TextView>(R.id.price)
+        val qty = itemView.findViewById<TextView>(R.id.qty)
         val deleteButton = itemView.findViewById<ImageButton>(R.id.deleteButton)
-        val itemID = itemView.findViewById<TextView>(R.id.item)
+        val itemID = itemView.findViewById<TextView>(R.id.itemID)
     }
 }
