@@ -102,7 +102,7 @@ private lateinit var binding: ActivityMainBinding
                     val vitalPoint = VitalPoint()
                     vitalPoint.spo2 = p1.toDouble()
                     vitalPoint.bp = p2.toDouble()
-                    vitalPoint.ecg = p2.toDouble()
+                    vitalPoint.ecg = p3.toDouble()
                     vitalPoint.timeMillis = time
                     vitalsBatch.add(vitalPoint)
 

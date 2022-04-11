@@ -51,23 +51,21 @@ class PatientVitals : Fragment() {
             while (true) {
                 if (patientId != null) {
                     vitalsManager.getVitals(patientId!!.toInt(), 100) {
+                        if (it != null) {
+                            val newEntries1 = ArrayList<Entry>()
+                            val newEntries2 = ArrayList<Entry>()
+                            val newEntries3 = ArrayList<Entry>()
+                            val reversed = it.asReversed()
+                            for(i in it.indices) {
+                                newEntries1.add(Entry(i.toFloat(), reversed[i].spo2.toFloat()))
+                                newEntries2.add(Entry(i.toFloat(), reversed[i].bp.toFloat()))
+                                newEntries3.add(Entry(i.toFloat(), reversed[i].ecg.toFloat()))
+                            }
 
-                        val newEntries1 = ArrayList<Entry>()
-                        val newEntries2 = ArrayList<Entry>()
-                        val newEntries3 = ArrayList<Entry>()
-
-                        for(i in it?.indices!!) {
-                            newEntries1.add(0, Entry(i.toFloat(), it[i].spo2.toFloat()))
-                            newEntries2.add(0, Entry(i.toFloat(), it[i].bp.toFloat()))
-                            newEntries3.add(0, Entry(i.toFloat(), it[i].ecg.toFloat()))
+                            entries1 = newEntries1
+                            entries2 = newEntries2
+                            entries3 = newEntries3
                         }
-                        newEntries1.reverse()
-                        newEntries2.reverse()
-                        newEntries3.reverse()
-
-                        entries1 = newEntries1
-                        entries2 = newEntries2
-                        entries3 = newEntries3
                     }
                 }
                 Thread.sleep(3000)
