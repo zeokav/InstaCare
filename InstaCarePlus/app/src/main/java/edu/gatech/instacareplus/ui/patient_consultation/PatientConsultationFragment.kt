@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import edu.gatech.instacareplus.ChatFeature
 import edu.gatech.instacareplus.MainActivity
 import edu.gatech.instacareplus.R
 import edu.gatech.instacareplus.ServiceManager.ConsultManager
@@ -40,13 +43,22 @@ class PatientConsultationFragment : Fragment() {
             var done = false
             while (!done) {
                 consultationService.getQueue("general") {
-                    if (it != null) {
+                    if (it != null && !done) {
                         for (i in it.indices) {
-                            if (it[i].consultationId == consultationId && it[i].isAssigned == 1) {
+                            if (it[i].consultationId == consultationId && it[i].isAssigned == 1 && !done) {
                                 val progressBar =
                                     view?.findViewById<ProgressBar>(R.id.consultationProgressBar)
                                 progressBar?.visibility = View.GONE
                                 done = true
+
+                                val fragment: Fragment = ChatFeature(false)
+                                arguments?.putLong("consultation_id", consultationId)
+                                fragment.arguments = arguments
+                                val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+                                val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+                                fragmentTransaction.replace(R.id.fragmentContainerView, fragment)
+                                fragmentTransaction.addToBackStack(null)
+                                fragmentTransaction.commit()
                                 break
                             }
                         }
