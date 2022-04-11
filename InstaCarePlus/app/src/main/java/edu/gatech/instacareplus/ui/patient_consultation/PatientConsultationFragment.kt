@@ -42,7 +42,7 @@ class PatientConsultationFragment : Fragment() {
         Thread {
             var done = false
             while (!done) {
-                consultationService.getQueue("general") {
+                consultationService.getLiveConsultations("general") {
                     if (it != null && !done) {
                         for (i in it.indices) {
                             if (it[i].consultationId == consultationId && it[i].isAssigned == 1 && !done) {

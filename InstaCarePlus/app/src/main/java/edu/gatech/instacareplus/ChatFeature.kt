@@ -60,10 +60,12 @@ class ChatFeature(isDoctorInterface: Boolean) : Fragment() {
                                 message.belongsToCurrentUser = !it[i].fromPatient
                                 memberData.userId = 1
                                 memberData.name = "Doctor"
+                                memberData.color = "#ff6538"
                             } else {
                                 message.belongsToCurrentUser = it[i].fromPatient
                                 memberData.userId = 0
                                 memberData.name = "Patient"
+                                memberData.color = "#ff6538"
                             }
 
                             message.memberData = memberData

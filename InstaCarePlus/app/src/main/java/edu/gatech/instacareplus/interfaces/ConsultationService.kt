@@ -12,6 +12,9 @@ interface ConsultationService {
     @GET("user-service/consultation/list_available")
     fun getQueue(@Query("specialty") specialty: String): Call<List<ConsultationQueue>>
 
+    @GET("user-service/consultation/list_live")
+    fun getLiveConsultations(@Query("specialty") specialty: String): Call<List<ConsultationQueue>>
+
     @Headers("Content-Type: application/json")
     @POST("user-service/consultation/claim")
     fun claimConsultation(@Body request: ConsultationClaimRequest): Call<ConsultationQueue>

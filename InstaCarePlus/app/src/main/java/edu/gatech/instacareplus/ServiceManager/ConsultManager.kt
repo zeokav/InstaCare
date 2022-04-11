@@ -52,4 +52,20 @@ class ConsultManager {
             }
         )
     }
+
+    fun getLiveConsultations(specialty: String, onResult: (List<ConsultationQueue>?) -> Unit){
+        val retrofit = ServiceBuilder.buildService(ConsultationService::class.java)
+        retrofit.getLiveConsultations(specialty).enqueue(
+            object : Callback<List<ConsultationQueue>> {
+                override fun onFailure(call: Call<List<ConsultationQueue>>, t: Throwable) {
+                    onResult(null)
+                }
+                override fun onResponse( call: Call<List<ConsultationQueue>>,
+                                         response: Response<List<ConsultationQueue>>) {
+                    val resp = response.body()
+                    onResult(resp)
+                }
+            }
+        )
+    }
 }

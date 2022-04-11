@@ -37,6 +37,7 @@ class PatientContainer : Fragment() {
     override fun onStart() {
         super.onStart()
         val fragment: Fragment = HomeFragment()
+        val arguments = Bundle()
         fragment.arguments = arguments
         val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
