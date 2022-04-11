@@ -9,11 +9,13 @@ import androidx.fragment.app.FragmentTransaction
 
 class DoctorActivity : AppCompatActivity() {
     var doctorId: Int = -1
+    var doctorName: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_doctor)
         doctorId = intent.getIntExtra("userId", -1)
+        doctorName = intent.getStringExtra("uname").toString()
     }
 
     override fun onStart() {

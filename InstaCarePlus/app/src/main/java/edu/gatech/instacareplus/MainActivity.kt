@@ -1,6 +1,8 @@
 package edu.gatech.instacareplus
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
+import android.widget.TextView
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -42,6 +44,8 @@ private lateinit var binding: ActivityMainBinding
         uname = intent.getStringExtra("uname").toString()
         emailID = intent.getStringExtra("email").toString()
 
+        //val v = findViewById<TextView>(R.id.emailID)
+        //v.text = emailID
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
